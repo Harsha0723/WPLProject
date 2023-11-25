@@ -13,7 +13,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 
 import SlideshowGrid from '../components/SlideshowGrid';
-import Copyright from '../components/Copyright';
 
 export default function SignInSide() {
   const handleSubmit = (event) => {
@@ -91,7 +90,6 @@ export default function SignInSide() {
                 </Link>
               </Grid>
             </Grid>
-            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
       </Grid>

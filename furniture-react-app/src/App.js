@@ -1,13 +1,11 @@
 import './App.css';
 
-import SignInSide from './pages/SignInSide';
-import SignUp from './pages/SignUp';
+import Layout from './components/Layout/Layout'
 
 function App() {
   return (
     <div className="App">
-      <SignInSide/>
-      {/* <SignUp/> */}
+      <Layout/>
     </div>
   );
 }
