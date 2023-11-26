@@ -1,0 +1,215 @@
+const express = require("express");
+const router = express.Router();
+const Product = require("../models/Product");
+const Order = require("../models/Order");
+const User = require("../models/User");
+const mongoose = require("mongoose");
+
+router.post("/add", async (req, res) => {
+  const {
+    title,
+    category,
+    image_link,
+    seller_id,
+    mrp,
+    tax,
+    shipping_cost,
+    street,
+    city,
+    country,
+    zipCode,
+    quantity,
+    username,
+  } = req.body;
+
+  try {
+    const newProduct = new Product({
+      title,
+      category,
+      image_link,
+      seller_id,
+      price: {
+        mrp: mrp,
+        tax: tax,
+        shipping_cost: shipping_cost,
+      },
+      product_address: {
+        street: street,
+        city: city,
+        country: country,
+        zipCode: zipCode,
+      },
+      quantity,
+    });
+    await newProduct.save();
+
+    await User.findOneAndUpdate(
+      { username },
+      { $push: { sell_products_id: newProduct._id } }
+    );
+
+    res.json({ message: "Product registered successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+router.get("/list", async (req, res) => {
+  try {
+    const {
+      category,
+      min_price,
+      max_price,
+      start_date,
+      end_date,
+      state,
+      title,
+    } = req.query;
+    let filter = {};
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (min_price && max_price) {
+      filter["price.mrp"] = {
+        $gte: parseInt(min_price),
+        $lte: parseInt(max_price),
+      };
+    }
+
+    if (start_date && end_date) {
+      filter.registration_date = {
+        $gte: new Date(start_date),
+        $lte: new Date(end_date),
+      };
+    }
+
+    if (state) {
+      filter["product_address.state"] = state;
+    }
+
+    if (title) {
+      const regex = new RegExp(title, "i");
+      filter.title = { $regex: regex };
+    }
+
+    // Query the database to find products based on the applied filters
+    const products = await Product.find(filter, {
+      price: 1,
+      image_link: 1,
+      category: 1,
+      title: 1,
+    });
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  const product_id = req.params.id;
+  const result = await Product.findByIdAndDelete({ _id: product_id });
+  if (!result) res.status(404).send("Error");
+  else res.status(200).send("Product deleted successfully");
+});
+
+router.put("/edit/:id", async (req, res) => {
+  const product_id = req.params.id;
+  const {
+    title,
+    category,
+    image_link,
+    seller_id,
+    mrp,
+    tax,
+    shipping_cost,
+    street,
+    city,
+    country,
+    zipCode,
+    quantity,
+  } = req.body;
+  const result = await Product.findByIdAndUpdate(
+    { _id: product_id },
+    {
+      title,
+      category,
+      image_link,
+      seller_id,
+      mrp,
+      tax,
+      shipping_cost,
+      street,
+      city,
+      country,
+      zipCode,
+      quantity,
+    }
+  );
+  if (!result) res.status(400).send("Error");
+  else res.status(200).send("Product updated successfully");
+});
+
+router.get("/details/:product_id", async (req, res) => {
+  try {
+    const product_id = req.params.product_id;
+
+    // Validate input parameter
+    if (!product_id) {
+      return res
+        .status(400)
+        .json({ error: "Product_id parameter is required." });
+    }
+
+    // Query the database to find the product with the specified product_id
+    const product = await Product.findOne({ _id: product_id });
+
+    // Check if the product exists
+    if (!product) {
+      return res.status(404).json({ error: "Product not found." });
+    }
+
+    // Response with product details
+    const productDetails = {
+      price: product.price,
+      image_link: product.image_link,
+      category: product.category,
+      title: product.title,
+      product_address: product.product_address,
+      registration_date: product.registration_date,
+      quantity: product.quantity,
+    };
+
+    res.json(productDetails);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.post("/update_favorite/:product_id/:username", async (req, res) => {
+  try {
+    const product_id = req.params.product_id;
+    const product_obj_id = new mongoose.Types.ObjectId(product_id);
+    const username = req.params.username;
+    const currentUser = await User.findOne({ username });
+    const fav_ids = currentUser.fav_products_id;
+
+    const index = fav_ids.indexOf(product_obj_id);
+    if (index === -1) {
+      currentUser.fav_products_id.push(product_obj_id);
+    } else {
+      currentUser.fav_products_id.splice(index, 1);
+    }
+    await currentUser.save();
+    res.status(200).send("Updated product to favorite");
+  } catch {
+    res.status(500).send("server error");
+  }
+});
+
+
+
+module.exports = router;
