@@ -1,16 +1,13 @@
 import React from 'react'
 
-import PrimarySearchAppBar from '../components/AppSearchBar';
+import Header from '../components/Header/Header';
 
 function LaunchPage(props) {
     
 
     return (
         <>
-            <PrimarySearchAppBar/>
-            <div>
-                Welcome Home!
-            </div>
+            <Header/>
         </>
     )
 }
