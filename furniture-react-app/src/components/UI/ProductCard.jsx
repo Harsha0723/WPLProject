@@ -4,9 +4,12 @@ import {motion} from "framer-motion";
 import "../../styles/product-card.css";
 import {Col} from "reactstrap";
 import {Link} from "react-router-dom";
+import {toast} from 'react-toastify';
+
 
 import {useDispatch} from "react-redux";
 import {cartActions} from "../../redux/slices/cartSlice";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const ProductCard = ({item}) => {
     const dispatch = useDispatch()
@@ -19,7 +22,7 @@ const ProductCard = ({item}) => {
             image: item.imgUrl,
         }));
 
-        alert("Product added to the cart!")
+        toast.success("Product added successfully.")
     };
 
     return (
@@ -37,7 +40,7 @@ const ProductCard = ({item}) => {
                 <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
                     <span className="price">${item.price}</span>
                     <motion.span whileTap={{scale: 1.2}} onClick={addToCart}>
-                        <i class="ri-add-line"></i>
+                        <MenuIcon/>
                     </motion.span>
                 </div>
             </div>

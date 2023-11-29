@@ -13,10 +13,10 @@
     font-size: 0.9rem;
 }
 
-/* Commented by Harsha, for Header styling */
-/* .row {
+/* Added a class to avoid, Header styling */
+.Shop.row {
     display: inline-flex;
-} */
+}
 
 .search_box {
     padding: 8px 20px;

@@ -10,6 +10,7 @@ import Badge from '@mui/material/Badge';
 
 import {motion} from 'framer-motion'
 import {Container, Row} from 'reactstrap';
+import {useSelector} from "react-redux";
 import {NavLink} from 'react-router-dom';
 
 const nav__link = [
@@ -31,7 +32,8 @@ const nav__link = [
 const Header = () => {
 
     const headerRef = useRef(null)
-
+    const totalQuantity = useSelector(state => state.cart.totalQuantity)
+    const menuRef = useRef(null);
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
             if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -46,6 +48,8 @@ const Header = () => {
         stickyHeaderFunc()
         return ()=>window.removeEventListener("scroll", stickyHeaderFunc);
     });
+
+    const menuToggle = () => menuRef.current.classList.toggle("active__menu");
     
     return <header className="header" ref={headerRef}>
         <Container>
@@ -60,8 +64,8 @@ const Header = () => {
                         </div>
                     </div>
                     
-                    <div className="navigation">
-                        <ul className="menu">
+                    <div className="navigation" ref={menuRef} onClick={menuToggle}> 
+                        <motion.ul className="menu">
                             {
                                 nav__link.map((item, index) => (
                                     <li className='nav__item' key={index}>
@@ -69,12 +73,12 @@ const Header = () => {
                                             to={item.path} className={(navClass)=>
                                             navClass.isActive? 'nav__active' : ''
                                             } >
-                                                {item.display}
+                                            {item.display}
                                         </NavLink>
                                     </li>
                                 ))
                             }
-                        </ul>
+                        </motion.ul>
                     </div>
 
                     <div className="nav__icons">
@@ -84,7 +88,7 @@ const Header = () => {
                             </Badge>
                         </span>
                         <span className="cart__icon">
-                            <Badge badgeContent={1} color="error">
+                            <Badge badgeContent={totalQuantity} color="error">
                                 <ShoppingCartIcon />
                             </Badge>
                         </span>
@@ -94,7 +98,7 @@ const Header = () => {
                             </motion.div>
                         </span>
                         <div className="mobile__menu">
-                            <span>
+                            <span onClick={menuToggle}>
                                 <MenuIcon></MenuIcon>
                             </span>
                         </div>

@@ -10,7 +10,7 @@ const Shop = () => {
       <CommonSection title="Products" />
       <section>
         <Container>
-          <Row>
+          <Row class="Shop">
             <Col lg="3" md="3">
               <div className="filter__widget">
                 <select>
