@@ -97,6 +97,9 @@ router.get("/userInfo/:username", async (req, res) => {
         city: currentUser.address.city,
         country: currentUser.address.country,
         zipCode: currentUser.address.zipCode,
+        sell_products_id:currentUser.sell_products_id,
+        bought_products_id:currentUser.bought_products_id,
+        fav_products_id:currentUser.fav_products_id
       });
     } else {
       res.status(400).json({ message: "User Doesn't Exist" });
