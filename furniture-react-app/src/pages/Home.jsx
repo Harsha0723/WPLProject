@@ -2,7 +2,7 @@ import React from 'react'
 
 import Header from '../components/Header/Header';
 
-function LaunchPage(props) {
+function Home(props) {
     
 
     return (
@@ -12,4 +12,4 @@ function LaunchPage(props) {
     )
 }
 
-export default LaunchPage;
+export default Home;
