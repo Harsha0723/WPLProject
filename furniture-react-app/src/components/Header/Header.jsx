@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge';
 import {motion} from 'framer-motion'
 import {Container, Row} from 'reactstrap';
 import {useSelector} from "react-redux";
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 
 const nav__link = [
     {
@@ -34,6 +34,8 @@ const Header = () => {
     const headerRef = useRef(null)
     const totalQuantity = useSelector(state => state.cart.totalQuantity)
     const menuRef = useRef(null);
+    const navigate = useNavigate();
+
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
             if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -51,7 +53,11 @@ const Header = () => {
 
     const menuToggle = () => menuRef.current.classList.toggle("active__menu");
     
-    return <header className="header" ref={headerRef}>
+    const navigateToCart = () => {
+        navigate('/cart')
+    }
+
+    return (<header className="header" ref={headerRef}>
         <Container>
             <Row>
                 <div className = "nav__wrapper">
@@ -87,7 +93,7 @@ const Header = () => {
                                 <FavoriteIcon />
                             </Badge>
                         </span>
-                        <span className="cart__icon">
+                        <span className="cart__icon" onClick={navigateToCart}>
                             <Badge badgeContent={totalQuantity} color="error">
                                 <ShoppingCartIcon />
                             </Badge>
@@ -106,7 +112,7 @@ const Header = () => {
                 </div>
             </Row>
         </Container>
-    </header>
+    </header>)
 };
 
 export default Header;
