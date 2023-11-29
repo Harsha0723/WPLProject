@@ -8,6 +8,7 @@ import ProductDetails from "../pages/ProductDetails";
 import AddProduct from "../pages/seller/AddProduct"
 import EditProduct from "../pages/seller/EditProduct";
 import ProductList from "../pages/seller/ProductList";
+import AccInfo from "../pages/seller/AccInfo";
 
 
 
@@ -22,6 +23,9 @@ const Routers = () => {
         <Route path="seller/add_product/:username" element= {<AddProduct/>} />
         <Route path="seller/edit_product/:username/:productId" element= {<EditProduct/>} />
         <Route path="seller/product_list/:username" element= {<ProductList/>} />
+        <Route path="seller/acc_info/:username" element= {<AccInfo/>} />
+
+
 
 
 

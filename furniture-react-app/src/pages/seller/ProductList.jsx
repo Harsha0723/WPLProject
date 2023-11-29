@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import { styled } from "@mui/system";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import SellerNav from "./SellerNav";
 
 const ProductListContainer = styled("div")({
   display: "grid",
@@ -40,6 +41,8 @@ const ProductList = () => {
   }, [username]);
   
   return (
+    <>
+    <SellerNav username={username} />
     <ProductListContainer>
       {products.map((product) => (
         <ProductCard
@@ -52,6 +55,7 @@ const ProductList = () => {
         />
       ))}
     </ProductListContainer>
+    </>
   );
 };
 
