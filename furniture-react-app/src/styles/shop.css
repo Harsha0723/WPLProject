@@ -22,7 +22,7 @@
 .search_box {
     padding: 2px 2px;
     margin: 10px;
-    width: 200%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between; 
