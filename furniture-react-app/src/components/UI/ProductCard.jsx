@@ -1,7 +1,7 @@
 import React from "react";
 
 import {motion} from "framer-motion";
-import "../../styles/product-card.css";
+// import "../../styles/product-card.css";
 import {Col} from "reactstrap";
 import {Link} from "react-router-dom";
 import {toast} from 'react-toastify';
@@ -10,6 +10,7 @@ import {toast} from 'react-toastify';
 import {useDispatch} from "react-redux";
 import {cartActions} from "../../redux/slices/cartSlice";
 import MenuIcon from '@mui/icons-material/Menu';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const ProductCard = ({item}) => {
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const ProductCard = ({item}) => {
                 <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
                     <span className="price">${item.price}</span>
                     <motion.span whileTap={{scale: 1.2}} onClick={addToCart}>
-                        <MenuIcon/>
+                        <AddCircleIcon/>
                     </motion.span>
                 </div>
             </div>

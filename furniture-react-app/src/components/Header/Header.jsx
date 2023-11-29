@@ -63,7 +63,7 @@ const Header = () => {
                 <div className = "nav__wrapper">
                     
                     <div className="logo">
-                        <img src={logo} alt="WPL Furnitures"/>
+                        <img src={logo} alt="FurniMart"/>
                         <div>
                             <h1>WPL Furnitures</h1>
                             <p> Since 2023</p>
