@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import SearchIcon from '@mui/icons-material/Search';
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import "../styles/shop.css";
+import products from '../assets/data/products';
 
 const Shop = () => {
+
+    const [productsData, setProductsData] = useState(products);
+    // const handleFilter = e => {
+    //     const filterVal = e.target.value;
+    //     if (filterVal == 'sofa') {
+    //         const fileredProd = products.filter(
+    //             (item) => item.category == "sofa"
+    //         );
+    //     }
+    // };
+
   return (
     <Helmet title="Shop">
       <CommonSection title="Products" />
@@ -13,7 +26,7 @@ const Shop = () => {
           <Row class="Shop">
             <Col lg="3" md="3">
               <div className="filter__widget">
-                <select>
+                <select >
                   <option>Filter By Category</option>
                   <option value="sofa">Sofa</option>
                   <option value="chair">Chair</option>
@@ -35,7 +48,7 @@ const Shop = () => {
                 <div className="search_box">
                     <input type='text' placeholder="Search..... " />
                     <span>
-                        <i class="ri-search-line"></i>
+                        <SearchIcon/>
                     </span>
                 </div>
             </Col>

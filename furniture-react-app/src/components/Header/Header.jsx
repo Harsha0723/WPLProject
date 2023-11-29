@@ -15,7 +15,7 @@ import {NavLink} from 'react-router-dom';
 
 const nav__link = [
     {
-        path:'',
+        path:'home',
         display: 'Home'
     },
     {

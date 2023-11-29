@@ -6,6 +6,11 @@ import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import Cart from "../pages/Cart";
 import ProductDetails from "../pages/ProductDetails";
+import AddProduct from "../pages/seller/AddProduct"
+import EditProduct from "../pages/seller/EditProduct";
+import ProductList from "../pages/seller/ProductList";
+
+
 
 const Routers = () => {
     return <Routes>
@@ -15,7 +20,13 @@ const Routers = () => {
         <Route path="cart" element= {<Cart/>} />
         <Route path="shop/:id" element= {<ProductDetails/>} />
         <Route path="signup" element= {<SignUp/>} />
-        <Route path="signin" element= {<SignIn/>} />
+        <Route path="signin" element= {<SignIn/>} />                            
+        <Route path="seller/add_product/:username" element= {<AddProduct/>} />
+        <Route path="seller/edit_product/:username/:productId" element= {<EditProduct/>} />
+        <Route path="seller/product_list/:username" element= {<ProductList/>} />
+
+
+
     </Routes>
 };
 

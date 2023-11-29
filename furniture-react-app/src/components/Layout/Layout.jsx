@@ -1,10 +1,12 @@
 import React from 'react'
-import StickyFooter from '../StickyFooter'
-import Routers from '../../routers/Routers'
+import Header from "../Header/Header";
+import StickyFooter from '../StickyFooter';
+import Routers from '../../routers/Routers';
 
 const Layout = () => {
     return (
         <>
+        <Header />
             <div>
                 <Routers/>
             </div>
