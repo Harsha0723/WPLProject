@@ -109,9 +109,18 @@ router.get("/list", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id/:username", async (req, res) => {
   const product_id = req.params.id;
   const result = await Product.findByIdAndDelete({ _id: product_id });
+  const username = req.params.username;
+    const currentUser = await User.findOne({ username });
+    const sell_products_id = currentUser.sell_products_id;
+    const product_obj_id = new mongoose.Types.ObjectId(product_id);
+    const index = sell_products_id.indexOf(product_obj_id);
+
+      currentUser.sell_products_id.splice(index, 1);
+ 
+    await currentUser.save();
   if (!result) res.status(404).send("Error");
   else res.status(200).send("Product deleted successfully");
 });
@@ -174,6 +183,7 @@ router.get("/details/:product_id", async (req, res) => {
 
     // Response with product details
     const productDetails = {
+      _id:product._id,
       price: product.price,
       image_link: product.image_link,
       category: product.category,
