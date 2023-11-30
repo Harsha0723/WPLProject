@@ -78,8 +78,7 @@ const ProductDetails = () => {
                 <span className="product_price">${price}</span>
                 <p>{description}</p>
 
-                <button className="buy_btn" onClick={addToCart()}>Add to Cart</button>
-              </div>
+                <button className="buy_btn" onClick={addToCart()}>Add to Cart</button></div>
             </Col>
           </Row>
         </Container>
