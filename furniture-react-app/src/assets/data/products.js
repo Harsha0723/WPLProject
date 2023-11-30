@@ -1,3 +1,5 @@
+// TODO: Move to database
+
 import productImg01 from "../images/double-sofa-01.png";
 import productImg02 from "../images/double-sofa-02.png";
 import productImg03 from "../images/double-sofa-03.png";
@@ -10,16 +12,16 @@ import productImg007 from "../images/single-sofa-04.png";
 import productImg07 from "../images/arm-chair-01.jpg";
 import productImg08 from "../images/arm-chair-02.jpg";
 import productImg09 from "../images/arm-chair-03.jpg";
-import productImg10 from "../images/arm-chair-01.jpg";
-
-import productImg13 from "../images/phone-01.jpg";
-import productImg14 from "../images/phone-02.jpg";
-import productImg15 from "../images/phone-03.png";
-import productImg16 from "../images/phone-04.jpg";
-import productImg17 from "../images/phone-05.jpg";
-import productImg18 from "../images/phone-06.jpg";
-
-import productImg19 from "../images/watch-01.jpg";
+import productImg10 from "../images/bed-01.jpeg";
+import productImg11 from "../images/bed-02.jpeg";
+import productImg12 from "../images/bed-03.webp";
+import productImg13 from "../images/bed-04.webp";
+import productImg14 from "../images/bed-05.webp";
+import productImg15 from "../images/bed-06.webp";
+import productImg16 from "../images/table-01.webp";
+import productImg17 from "../images/table-02.webp";
+import productImg18 from "../images/table-03.webp";
+import productImg19 from "../images/table-04.webp";
 import productImg20 from "../images/watch-02.jpg";
 import productImg21 from "../images/watch-03.jpg";
 import productImg22 from "../images/watch-04.jpg";
@@ -277,17 +279,17 @@ const products = [
 
   {
     id: "10",
-    productName: "Apple iPhone 12 Pro",
-    imgUrl: productImg13,
-    category: "mobile",
-    price: 799,
+    productName: "Upholstered Bed Frame",
+    imgUrl: productImg10,
+    category: "bed",
+    price: 585,
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+      "Plush channels of upholstery bring a dramatic yet soft aesthetic to any bedroom.",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "With a luxurious tufted upholstered headboard and a solid platform to provide ideal support for any mattress, our modern bed frame combines timeless, contemporary design with effortless convenience.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -298,15 +300,15 @@ const products = [
     avgRating: 4.8,
   },
   {
-    id: "25",
-    productName: "Sakarias Armchair",
-    imgUrl: productImg10,
-    category: "chair",
-    price: 99,
+    id: "11",
+    productName: "Storage Bed",
+    imgUrl: productImg12,
+    category: "bed",
+    price: 630,
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+      "Our storage bed allows you to maximize your spaces without skimping on aesthetics",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Our Storage Bed allows you to maximize your spaces without skimping on aesthetics. Featuring extensive storage space and a sleek design, this high quality upholstered bed frame ensures you make the most of your personal space.",
     reviews: [
       {
         rating: 4.6,
@@ -320,41 +322,18 @@ const products = [
     avgRating: 4.7,
   },
   {
-    id: "11",
-    productName: "Apple iPhone 12 Max",
-    imgUrl: productImg14,
-    category: "mobile",
-    price: 799,
-    shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
-    reviews: [
-      {
-        rating: 4.8,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-      {
-        rating: 4.9,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-    ],
-    avgRating: 4.8,
-  },
-
-  {
     id: "12",
-    productName: "Realme 8",
-    imgUrl: productImg15,
-    category: "mobile",
-    price: 599,
+    productName: "Wooden Bed Frame",
+    imgUrl: productImg13,
+    category: "bed",
+    price: 675,
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+      "Our wooden bed frame is designed to be both convenient to build, and stunning to look at.",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Our natural, sustainable bed frame made of solid wood. Combining traditional Japanese joinery with timeless styling, our wooden bed frames allow you to select your preferred style to refine your personal spaces.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -362,22 +341,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "13",
-    productName: "One Plus Nord",
-    imgUrl: productImg16,
-    category: "mobile",
-    price: 799,
+    productName: "Wooden Platform Bed",
+    imgUrl: productImg14,
+    category: "bed",
+    price: 495,
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+      "Our beautiful wooden platform bed, constructed from solid acacia wood.",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Our natural, sustainable bed frame made of solid wood. Combining traditional Japanese joinery with timeless styling, our wooden bed frames allow you to select your preferred style to refine your personal spaces.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -385,22 +363,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "14",
-    productName: "Apple iPhone 13 Pro",
-    imgUrl: productImg17,
-    category: "mobile",
-    price: 899,
+    productName: "The Platform Bed",
+    imgUrl: productImg15,
+    category: "bed",
+    price: 150,
     shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+      "Our no-nonsense platform bed can also function as a box spring. providing support with a simple design,",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "With a solid base to provide ideal support for any mattress, our Platform Bed combines timeless design with effortless convenience.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -408,22 +385,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "15",
-    productName: "Samsung Galaxy S22",
-    imgUrl: productImg18,
-    category: "mobile",
-    price: 699,
+    productName: "Table de chevet en rotin - 1 tiroir",
+    imgUrl: productImg16,
+    category: "table",
+    price: 375,
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Cette table de chevet combine de l'hévéa massif avec de la canne de rotin naturel, pour une pièce de style intemporel qui donne une esthétique décontractée à votre chambre.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -431,22 +407,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "16",
-    productName: "Rolex Watch",
-    imgUrl: productImg19,
-    category: "watch",
-    price: 299,
+    productName: "Table de chevet en rotin - 1 tiroir",
+    imgUrl: productImg17,
+    category: "table",
+    price: 403,
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Cette table de chevet combine de l'hévéa massif avec de la canne de rotin naturel, pour une pièce de style intemporel qui donne une esthétique décontractée à votre chambre.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -454,22 +429,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "17",
-    productName: "Timex Easy Reader Watch",
-    imgUrl: productImg20,
-    category: "watch",
-    price: 299,
+    productName: "Table de chevet en bois",
+    imgUrl: productImg18,
+    category: "table",
+    price: 215,
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Notre table de chevet en bois est fabriquée à partir de bois d'acacia 100 % naturel, offrant un caractère épuré et raffiné à n'importe quelle chambre.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -477,22 +451,21 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
+    avgRating: 4.7,
   },
-
   {
     id: "18",
-    productName: "Rolex Watch",
-    imgUrl: productImg21,
-    category: "watch",
-    price: 299,
+    productName: "Table de chevet en bois - Acacia foncé",
+    imgUrl: productImg19,
+    category: "table",
+    price: 225,
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+      "Notre table de chevet en bois est fabriquée à partir de bois d'acacia 100 % naturel, offrant un caractère épuré et raffiné à n'importe quelle chambre.",
     reviews: [
       {
-        rating: 4.8,
+        rating: 4.6,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
@@ -500,77 +473,8 @@ const products = [
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
     ],
-    avgRating: 4.8,
-  },
-
-  {
-    id: "19",
-    productName: "Apple Watch",
-    imgUrl: productImg22,
-    category: "watch",
-    price: 399,
-    shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
-    reviews: [
-      {
-        rating: 4.8,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-      {
-        rating: 4.9,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-    ],
-    avgRating: 4.8,
-  },
-
-  {
-    id: "20",
-    productName: "Beat Studio Wireless",
-    imgUrl: productImg23,
-    category: "wireless",
-    price: 199,
-    shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
-    reviews: [
-      {
-        rating: 4.8,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-      {
-        rating: 4.9,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-    ],
-    avgRating: 4.8,
-  },
-
-  {
-    id: "22",
-    productName: "Beat EP Headphones",
-    imgUrl: productImg25,
-    category: "wireless",
-    price: 199,
-    shortDesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
-    reviews: [
-      {
-        rating: 4.8,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-      {
-        rating: 4.9,
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      },
-    ],
-    avgRating: 4.8,
-  },
+    avgRating: 4.7,
+  }
 ];
 
 export default products;

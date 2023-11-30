@@ -10,7 +10,8 @@ import Badge from '@mui/material/Badge';
 
 import {motion} from 'framer-motion'
 import {Container, Row} from 'reactstrap';
-import {NavLink} from 'react-router-dom';
+import {useSelector} from "react-redux";
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 
 const nav__link = [
     {
@@ -31,6 +32,11 @@ const nav__link = [
 const Header = () => {
 
     const headerRef = useRef(null)
+    const totalQuantity = useSelector(state => state.cart.totalQuantity)
+    const profileActionRef = useRef(null)
+
+    const menuRef = useRef(null);
+    const navigate = useNavigate();
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
@@ -46,22 +52,34 @@ const Header = () => {
         stickyHeaderFunc()
         return ()=>window.removeEventListener("scroll", stickyHeaderFunc);
     });
+
+    const menuToggle = () => menuRef.current.classList.toggle("active__menu");
     
-    return <header className="header" ref={headerRef}>
+    const navigateToCart = () => {
+        navigate('/cart')
+    }
+
+    const toggleProfileActions = ()=> {
+        const profileActions = profileActionRef.current;
+        profileActions.classList.toggle('show__profileActions');
+    }
+
+
+    return (<header className="header" ref={headerRef}>
         <Container>
             <Row>
                 <div className = "nav__wrapper">
                     
                     <div className="logo">
-                        <img src={logo} alt="WPL Furnitures"/>
+                        <img src={logo} alt="FurniMart"/>
                         <div>
-                            <h1>WPL Furnitures</h1>
+                            <h1>FurniMart</h1>
                             <p> Since 2023</p>
                         </div>
                     </div>
                     
-                    <div className="navigation">
-                        <ul className="menu">
+                    <div className="navigation" ref={menuRef} onClick={menuToggle}> 
+                        <motion.ul className="menu">
                             {
                                 nav__link.map((item, index) => (
                                     <li className='nav__item' key={index}>
@@ -69,12 +87,12 @@ const Header = () => {
                                             to={item.path} className={(navClass)=>
                                             navClass.isActive? 'nav__active' : ''
                                             } >
-                                                {item.display}
+                                            {item.display}
                                         </NavLink>
                                     </li>
                                 ))
                             }
-                        </ul>
+                        </motion.ul>
                     </div>
 
                     <div className="nav__icons">
@@ -83,18 +101,34 @@ const Header = () => {
                                 <FavoriteIcon />
                             </Badge>
                         </span>
-                        <span className="cart__icon">
-                            <Badge badgeContent={1} color="error">
+                        <span className="cart__icon" onClick={navigateToCart}>
+                            <Badge badgeContent={totalQuantity} color="error">
                                 <ShoppingCartIcon />
                             </Badge>
                         </span>
-                        <span className="account__icon">
+                        <div className="profile">
                             <motion.div whileTap={{ scale: 1.5 }}>
-                                <AccountCircleIcon />
+                                <AccountCircleIcon onClick={toggleProfileActions} />
                             </motion.div>
-                        </span>
+
+                            <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
+                                {/* {currentUser ? (
+                                    <span onClick={logout}>Logout</span>
+                                ): (
+                                    <div className='d-flex align-items-center justify-content-center flex-column'>
+                                         <Link to='/signup'>SignUp</Link>
+                                        <Link to='/signin'>SignIn</Link>
+                                    </div>
+                                )} */}
+                                    
+                                <div className='d-flex align-items-center justify-content-center flex-column bordered'> 
+                                    <Link to='/signup'>SignUp</Link>
+                                    <Link to='/signin'>SignIn</Link>
+                                </div>       
+                            </div>
+                        </div>
                         <div className="mobile__menu">
-                            <span>
+                            <span onClick={menuToggle}>
                                 <MenuIcon></MenuIcon>
                             </span>
                         </div>
@@ -102,7 +136,7 @@ const Header = () => {
                 </div>
             </Row>
         </Container>
-    </header>
+    </header>)
 };
 
 export default Header;

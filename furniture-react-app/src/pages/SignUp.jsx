@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Helmet from '../components/Helmet/Helmet';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -25,7 +26,7 @@ export default function SignUp() {
   };
 
   return (
-    
+    <Helmet title = "Signup">
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -36,7 +37,7 @@ export default function SignUp() {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: 'var(--primary-color)' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -97,7 +98,7 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, bgcolor: 'var(--primary-color)'}}
           >
             Sign Up
           </Button>
@@ -112,5 +113,6 @@ export default function SignUp() {
         </Box>
       </Box>
     </Container>
+    </Helmet>
   );
 }
