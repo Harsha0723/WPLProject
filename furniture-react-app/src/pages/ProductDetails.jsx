@@ -72,7 +72,7 @@ const ProductDetails = () => {
                   (<span>{avgRating}</span> ratings)
                 </div>
                 <span className="product_price">${price}</span>
-                <p>{shortDesc}</p>
+                <p>{description}</p>
 
                 <button className="buy_btn" onClick={addToCart()}>Add to Cart</button>
               </div>
