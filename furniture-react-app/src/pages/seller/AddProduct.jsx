@@ -9,6 +9,7 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
@@ -76,7 +77,7 @@ export default function AddProduct() {
   };
 
   return (
-    <>
+    <div style={{marginBottom:'30px'}}>
       <SellerNav username={username} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -88,8 +89,8 @@ export default function AddProduct() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+            <Inventory2Icon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Add Product
@@ -217,6 +218,6 @@ export default function AddProduct() {
           </Box>
         </Box>
       </Container>
-    </>
+    </div>
   );
 }

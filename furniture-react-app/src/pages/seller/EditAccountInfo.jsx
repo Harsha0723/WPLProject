@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 const StyledForm = styled("form")({
   maxWidth: "400px",
@@ -100,7 +101,7 @@ const EditUserInfo = () => {
   };
 
   return (
-    <>
+    <div style={{marginBottom:'30px'}}>
       <SellerNav username={username} />
 
       <Container component="main" maxWidth="xs">
@@ -113,8 +114,8 @@ const EditUserInfo = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+            <ContactPageIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Edit User Information
@@ -230,7 +231,7 @@ const EditUserInfo = () => {
           )}
         </Box>
       </Container>
-    </>
+    </div>
   );
 };
 

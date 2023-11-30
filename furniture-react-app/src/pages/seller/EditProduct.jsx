@@ -13,32 +13,37 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SellerNav from "./SellerNav";
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+
 
 export default function EditProduct() {
-  const {  } = useParams();
+  const {} = useParams();
 
-  const { productId,username } = useParams();
+  const { productId, username } = useParams();
   const [product, setProduct] = React.useState({
-    title: '',
-    category: '',
+    title: "",
+    category: "",
     image_link: [],
     mrp: 0,
     tax: 0,
     shipping_cost: 0,
-    street: '',
-    city: '',
-    country: '',
+    street: "",
+    city: "",
+    country: "",
     zipCode: 0,
     quantity: 0,
-    seller_id:username
+    seller_id: username,
   });
 
   React.useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/details/${productId}`);
+        const response = await axios.get(
+          `http://localhost:5000/products/details/${productId}`
+        );
         setProduct({
           ...product,
           title: response.data.title,
@@ -54,7 +59,7 @@ export default function EditProduct() {
           quantity: response.data.quantity,
         });
       } catch (error) {
-        console.error('Error fetching product details:', error);
+        console.error("Error fetching product details:", error);
       }
     };
 
@@ -65,15 +70,18 @@ export default function EditProduct() {
     event.preventDefault();
 
     try {
-      const response = await axios.put(`http://localhost:5000/products/edit/${productId}`, product);
+      const response = await axios.put(
+        `http://localhost:5000/products/edit/${productId}`,
+        product
+      );
 
-      console.log('Product updated successfully:', response.data);
+      console.log("Product updated successfully:", response.data);
 
-      toast.success('Product updated successfully');
+      toast.success("Product updated successfully");
       // history.push(`/products/details/${productId}`);
     } catch (error) {
-      console.error('Error updating product:', error);
-      toast.error('Error updating product');
+      console.error("Error updating product:", error);
+      toast.error("Error updating product");
     }
   };
 
@@ -86,163 +94,171 @@ export default function EditProduct() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Edit Product
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          {/* Similar form fields as in AddProduct component */}
-          {/* ... */}
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="title"
-                label="Title"
-                name="title"
-                value={product.title}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="category"
-                label="Category"
-                name="category"
-                value={product.category}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="image_link"
-                label="Image Link"
-                name="image_link"
-                value={product.image_link}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="mrp"
-                label="MRP"
-                name="mrp"
-                type="number"
-                value={product.mrp}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="tax"
-                label="Tax"
-                name="tax"
-                type="number"
-                value={product.tax}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="shipping_cost"
-                label="Shipping Cost"
-                name="shipping_cost"
-                type="number"
-                value={product.shipping_cost}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="street"
-                label="Street"
-                name="street"
-                value={product.street}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="city"
-                label="City"
-                name="city"
-                value={product.city}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="country"
-                label="Country"
-                name="country"
-                value={product.country}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="zip_code"
-                label="Zip Code"
-                name="zip_code"
-                type="number"
-                value={product.zipCode}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleInputChange}
-                required
-                fullWidth
-                id="quantity"
-                label="Quantity"
-                name="quantity"
-                type="number"
-                value={product.quantity}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+    <div style={{marginBottom:'30px'}}>
+      <SellerNav username={username} />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+            <Inventory2Icon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Edit Product
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
           >
-            Save Changes
-          </Button>
+            {/* Similar form fields as in AddProduct component */}
+            {/* ... */}
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="title"
+                  label="Title"
+                  name="title"
+                  value={product.title}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="category"
+                  label="Category"
+                  name="category"
+                  value={product.category}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="image_link"
+                  label="Image Link"
+                  name="image_link"
+                  value={product.image_link}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="mrp"
+                  label="MRP"
+                  name="mrp"
+                  type="number"
+                  value={product.mrp}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="tax"
+                  label="Tax"
+                  name="tax"
+                  type="number"
+                  value={product.tax}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="shipping_cost"
+                  label="Shipping Cost"
+                  name="shipping_cost"
+                  type="number"
+                  value={product.shipping_cost}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="street"
+                  label="Street"
+                  name="street"
+                  value={product.street}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="city"
+                  label="City"
+                  name="city"
+                  value={product.city}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="country"
+                  label="Country"
+                  name="country"
+                  value={product.country}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="zip_code"
+                  label="Zip Code"
+                  name="zip_code"
+                  type="number"
+                  value={product.zipCode}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="quantity"
+                  label="Quantity"
+                  name="quantity"
+                  type="number"
+                  value={product.quantity}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Save Changes
+            </Button>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </div>
   );
 }

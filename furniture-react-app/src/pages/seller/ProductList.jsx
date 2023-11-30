@@ -10,6 +10,7 @@ const ProductListContainer = styled("div")({
   gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
   gap: "16px",
   padding: "16px",
+  marginTop:'30px'
 });
 
 const ProductList = () => {
@@ -41,7 +42,7 @@ const ProductList = () => {
   }, [username]);
   
   return (
-    <>
+    <div style={{marginBottom:'50px'}}>
     <SellerNav username={username} />
     <ProductListContainer>
       {products.map((product) => (
@@ -52,10 +53,11 @@ const ProductList = () => {
           category={product.category}
           price={product.price.mrp}
           username={username}
+          imgUrl={product.image_link[0]}
         />
       ))}
     </ProductListContainer>
-    </>
+    </div>
   );
 };
 
