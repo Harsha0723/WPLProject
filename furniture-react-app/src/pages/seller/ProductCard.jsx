@@ -102,7 +102,7 @@ const ProductCard = (props) => {
 
   const handleEdit = (id,username) => {
     try {
-      navigate(`/seller/edit_product/${username}/${id}`,{replace:true})
+      navigate(`/seller/edit_product/${username}/${id}`)
     } catch(error) {
       console.error("Error Editing Product",error);
     }

@@ -26,10 +26,10 @@ const SellerNav = ({username}) => {
   return (
     <>
       <NavContainer>
-        <NavText onClick={() => navigate(`/seller/acc_info/${username}`,{replace:true})}>Account Info</NavText>
-        <NavText onClick={() => navigate(`/seller/add_product/${username}`,{replace:true})}>Add Product</NavText>
-        <NavText onClick={() => navigate(`/seller/product_list/${username}`,{replace:true})}>View Product</NavText>
-        <NavText>Edit Account Info</NavText>
+        <NavText onClick={() => navigate(`/seller/acc_info/${username}`)}>Account Info</NavText>
+        <NavText onClick={() => navigate(`/seller/add_product/${username}`)}>Add Product</NavText>
+        <NavText onClick={() => navigate(`/seller/product_list/${username}`)}>View Product</NavText>
+        <NavText onClick={() => navigate(`/seller/edit_account_info/${username}`)}>Edit Account Info</NavText>
       </NavContainer>
     </>
   );
