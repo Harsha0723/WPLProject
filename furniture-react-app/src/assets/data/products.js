@@ -1,3 +1,5 @@
+// TODO: Move to database
+
 import productImg01 from "../images/double-sofa-01.png";
 import productImg02 from "../images/double-sofa-02.png";
 import productImg03 from "../images/double-sofa-03.png";

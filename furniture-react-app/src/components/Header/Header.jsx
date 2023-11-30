@@ -11,7 +11,7 @@ import Badge from '@mui/material/Badge';
 import {motion} from 'framer-motion'
 import {Container, Row} from 'reactstrap';
 import {useSelector} from "react-redux";
-import {NavLink, useNavigate} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 
 const nav__link = [
     {
@@ -33,6 +33,8 @@ const Header = () => {
 
     const headerRef = useRef(null)
     const totalQuantity = useSelector(state => state.cart.totalQuantity)
+    const profileActionRef = useRef(null)
+
     const menuRef = useRef(null);
     const navigate = useNavigate();
 
@@ -56,6 +58,12 @@ const Header = () => {
     const navigateToCart = () => {
         navigate('/cart')
     }
+
+    const toggleProfileActions = ()=> {
+        const profileActions = profileActionRef.current;
+        profileActions.classList.toggle('show__profileActions');
+    }
+
 
     return (<header className="header" ref={headerRef}>
         <Container>
@@ -98,11 +106,27 @@ const Header = () => {
                                 <ShoppingCartIcon />
                             </Badge>
                         </span>
-                        <span className="account__icon">
+                        <div className="profile">
                             <motion.div whileTap={{ scale: 1.5 }}>
-                                <AccountCircleIcon />
+                                <AccountCircleIcon onClick={toggleProfileActions} />
                             </motion.div>
-                        </span>
+
+                            <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
+                                {/* {currentUser ? (
+                                    <span onClick={logout}>Logout</span>
+                                ): (
+                                    <div className='d-flex align-items-center justify-content-center flex-column'>
+                                         <Link to='/signup'>SignUp</Link>
+                                        <Link to='/signin'>SignIn</Link>
+                                    </div>
+                                )} */}
+                                    
+                                <div className='d-flex align-items-center justify-content-center flex-column bordered'> 
+                                    <Link to='/signup'>SignUp</Link>
+                                    <Link to='/signin'>SignIn</Link>
+                                </div>       
+                            </div>
+                        </div>
                         <div className="mobile__menu">
                             <span onClick={menuToggle}>
                                 <MenuIcon></MenuIcon>

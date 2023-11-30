@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from '../components/Helmet/Helmet';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,7 +27,7 @@ export default function SignInSide() {
   };
   
   return (
-    
+    <Helmet title='Login'>
     <Grid container component="main" sx={{ height: '100vh' }}>
       <CssBaseline />
       <SlideshowGrid />
@@ -40,7 +41,7 @@ export default function SignInSide() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'var(--primary-color)' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -72,10 +73,11 @@ export default function SignInSide() {
               label="Remember me"
             />
             <Button
+              className="login__btn"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 , bgcolor: 'var(--primary-color)'}}
             >
               Sign In
             </Button>
@@ -96,5 +98,6 @@ export default function SignInSide() {
         </Box>
       </Grid>
     </Grid>  
+    </Helmet>
   );
 }
