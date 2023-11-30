@@ -42,7 +42,7 @@ const Home = () => {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nobis animi magnam
                              voluptates est totam, quisquam explicabo fugit quo impedit!</p>
                         <motion.button  whileTap={{ scale: 1.2 }}
-                         className="buy__btn">
+                         className="buy__btn mt-3">
                             <Link to='/shop'>SHOP NOW</Link> 
                             </motion.button>
                     </div>

@@ -17,10 +17,12 @@
     flex-shrink: 0;
 }
 
-.logo img{
-    width: 4rem;
-    height: 4rem;
+.logo img {
+    width: 50%; /* Adjust the percentage as needed */
+    max-width: 4rem; /* Set a maximum width to avoid stretching on larger screens */
+    height: auto; /* Maintain aspect ratio */
 }
+
 
 .logo h1 {
     font-size: 1.2rem;
