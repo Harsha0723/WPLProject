@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from "../Header/Header";
-import StickyFooter from '../StickyFooter';
+import Footer from '../Footer/Footer';
 import Routers from '../../routers/Routers';
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
             <div>
                 <Routers/>
             </div>
-            <StickyFooter size="sm"/>
+            <Footer />
         </>
     )
 }

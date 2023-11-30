@@ -76,9 +76,9 @@ const ProductDetails = () => {
                   <p>(<span>{avgRating}</span>  ratings)</p>
                 </div>
                 <span className="product_price">${price}</span>
-                <p className="mt-3">{shortDesc}</p>
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button>
-              </div>
+                <p>{description}</p>
+
+                <button className="buy_btn" onClick={addToCart()}>Add to Cart</button></div>
             </Col>
           </Row>
         </Container>
