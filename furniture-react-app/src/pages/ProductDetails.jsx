@@ -11,6 +11,8 @@ import {useDispatch} from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import {toast} from "react-toastify";
 
+import {motion} from "framer-motion"
+
 const ProductDetails = () => {
   const { id } = useParams();
   const product = products.find((item) => item.id === id);
@@ -42,39 +44,40 @@ const ProductDetails = () => {
   };
 
   return (
-    <Helmet>
-      <CommonSection />
-      <section>
+    <Helmet title={productName}>
+      <CommonSection title={productName} />
+      <section className="pt-0">
         <Container>
           <Row>
-            <Col log="6">
+            <Col lg-6>
               <img src={imgUrl} alt="" />
             </Col>
-            <Col log="6">
-              <div className="product_details">
+            <Col lg-6>
+              <div className="product_details mb-3">
                 <h2>{productName}</h2>
                 <div className="product_rating d-flex align-items-center gap-5 mb-3">
-                  <span>
-                    <StarIcon />
-                  </span>
-                  <span>
-                    <StarIcon />
-                  </span>
-                  <span>
-                    <StarIcon />
-                  </span>
-                  <span>
-                    <StarIcon />
-                  </span>
-                  <span>
-                    <StarHalfIcon />
-                  </span>
-                  (<span>{avgRating}</span> ratings)
+                  <div>
+                    <span>
+                      <StarIcon />
+                    </span>
+                    <span>
+                      <StarIcon />
+                    </span>
+                    <span>
+                      <StarIcon />
+                    </span>
+                    <span>
+                      <StarIcon />
+                    </span>
+                    <span>
+                      <StarHalfIcon />
+                      </span>    
+                  </div>
+                  <p>(<span>{avgRating}</span>  ratings)</p>
                 </div>
                 <span className="product_price">${price}</span>
-                <p>{shortDesc}</p>
-
-                <button className="buy_btn" onClick={addToCart()}>Add to Cart</button>
+                <p className="mt-3">{shortDesc}</p>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button>
               </div>
             </Col>
           </Row>
