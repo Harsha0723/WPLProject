@@ -1,4 +1,7 @@
-import * as React from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from "axios";
 import Helmet from '../components/Helmet/Helmet';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,16 +16,49 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import Copyright from '../components/Copyright';
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      fname: data.get('firstName'),
+      lname: data.get('lastName'),
+      username: data.get('username'),
     });
+
+    const userData = {
+      fname: data.get('firstName'),
+      lname: data.get('lastName'),
+      email: data.get('email'),
+      username: data.get('username'),
+      password: data.get('password'),
+      // Add other fields as needed
+    };
+
+    try {
+      const response = await axios.post("http://localhost:5001/users/signup", userData);
+
+      if (response.status === 200) {
+        // Signup successful
+        toast.success('User registered successfully. Redirecting to login...');
+        // Optionally, you can redirect the user to the login page or perform other actions
+        setTimeout(() => {
+          // Optionally, you can redirect the user to the login page or perform other actions
+          navigate('/signin');
+        }, 2000);
+      } else {
+        // Signup failed
+        toast.error('Failed to register user.');
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(`Error: ${error.response.data.message}`);
+    }
   };
 
   return (
@@ -80,6 +116,16 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                id="username"
+                label="User Name"
+                name="username"
+                autoComplete="username"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
                 name="password"
                 label="Password"
                 type="password"
@@ -104,12 +150,11 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signin" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
-          <Copyright/>
         </Box>
       </Box>
     </Container>

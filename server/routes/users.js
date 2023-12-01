@@ -15,19 +15,28 @@ const isValidEmail = (email) => {
 };
 
 router.post("/signup", async (req, res) => {
+  // const {
+  //   username,
+  //   email,
+  //   fname,
+  //   lname,
+  //   phone,
+  //   password,
+  //   street,
+  //   city,
+  //   country,
+  //   zipCode,
+  //   is_seller,
+  // } = req.body;
+
   const {
     username,
     email,
     fname,
     lname,
-    phone,
     password,
-    street,
-    city,
-    country,
-    zipCode,
-    is_seller,
   } = req.body;
+
 
   if (!/^[A-Za-z\s]+$/.test(username)) {
     return res.status(400).json({ message: "Invalid username format." });
@@ -37,11 +46,11 @@ router.post("/signup", async (req, res) => {
     return res.status(400).json({ message: "Invalid email format." });
   }
 
-  if (!/^\d+$/.test(phone)) {
-    return res
-      .status(400)
-      .json({ message: "Invalid phone format. Use numbers only." });
-  }
+  // if (!/^\d+$/.test(phone)) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: "Invalid phone format. Use numbers only." });
+  // }
 
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -53,20 +62,28 @@ router.post("/signup", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 8);
 
+    // const newUser = new User({
+    //   username,
+    //   password: hashedPassword,
+    //   email,
+    //   phone,
+    //   fname,
+    //   lname,
+    //   is_seller,
+    //   address: {
+    //     street: street,
+    //     city: city,
+    //     country: country,
+    //     zipCode: zipCode,
+    //   },
+    // });
+
     const newUser = new User({
       username,
       password: hashedPassword,
       email,
-      phone,
       fname,
       lname,
-      is_seller,
-      address: {
-        street: street,
-        city: city,
-        country: country,
-        zipCode: zipCode,
-      },
     });
     await newUser.save();
 
@@ -77,7 +94,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", passport.authenticate("local"), (req, res) => {
+router.post("/signin", passport.authenticate("local"), (req, res) => {
   res.json({ message: "Login successful" });
 });
 
