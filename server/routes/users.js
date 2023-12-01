@@ -14,6 +14,37 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
+
+// Serialize user to the session
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user from the session
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
+
+const session = require('express-session');
+
+const app = express();
+
+// ...
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 router.post("/signup", async (req, res) => {
   // const {
   //   username,
@@ -114,6 +145,7 @@ router.post('/signin', (req, res, next) => {
     });
   })(req, res, next);
 });
+
 
 router.get("/userInfo/:username", async (req, res) => {
   const username = req.params.username;
@@ -220,5 +252,6 @@ router.get('/fav_list/:username', async (req, res) => {
   if (productList) res.status(200).json(productList);
   else res.status(400).send("No Products Exists");
 });
+
 
 module.exports = router;
