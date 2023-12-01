@@ -94,8 +94,25 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/signin", passport.authenticate("local"), (req, res) => {
-  res.json({ message: "Login successful" });
+router.post('/signin', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err); // Pass the error to the error handler middleware
+    }
+
+    if (!user) {
+      // Authentication failed
+      return res.status(401).json({ message: 'Login failed: Invalid username or password.' });
+    }
+
+    // Authentication successful
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.json({ message: 'Login successful' });
+    });
+  })(req, res, next);
 });
 
 router.get("/userInfo/:username", async (req, res) => {

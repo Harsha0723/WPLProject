@@ -43,7 +43,7 @@ export default function SignInSide() {
       }
     } catch (error) {
       console.log(error)
-      toast.error(`Login Failed: ${error.response.data.message}`);
+      toast.error(`${error.response.data.message}`);
     }
   };
   
