@@ -114,7 +114,7 @@ const EditUserInfo = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#0a1d37" }}>
             <ContactPageIcon />
           </Avatar>
           <Typography component="h1" variant="h5">

@@ -16,17 +16,21 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SellerNav from "./SellerNav";
-import Inventory2Icon from '@mui/icons-material/Inventory2';
-
+import Inventory2Icon from "@mui/icons-material/Inventory2";
 
 export default function EditProduct() {
   const {} = useParams();
 
   const { productId, username } = useParams();
+  const [file, setFile] = React.useState(null);
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
   const [product, setProduct] = React.useState({
     title: "",
     category: "",
-    image_link: [],
+    image_link: "",
     mrp: 0,
     tax: 0,
     shipping_cost: 0,
@@ -69,10 +73,37 @@ export default function EditProduct() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+
+    const productData = new FormData();
+
+    productData.append("title", product.title);
+    productData.append("category", product.category);
+    productData.append("seller_id", username);
+
+    productData.append("mrp", parseFloat(product.mrp));
+    productData.append("tax", parseFloat(product.tax));
+    productData.append(
+      "shipping_cost",
+      parseFloat(product.shipping_cost));
+
+    productData.append("street", product.street);
+    productData.append("city", product.city);
+    productData.append("country", product.country);
+    productData.append("zipCode", product.zipCode);
+    productData.append("quantity", parseInt(product.quantity));
+    productData.append("username", username);
+    productData.append("image_link", product.image_link);
+    productData.append('image123',file)
+
+
     try {
       const response = await axios.put(
         `http://localhost:5000/products/edit/${productId}`,
-        product
+        productData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       console.log("Product updated successfully:", response.data);
@@ -94,7 +125,7 @@ export default function EditProduct() {
   };
 
   return (
-    <div style={{marginBottom:'30px'}}>
+    <div style={{ marginBottom: "30px" }}>
       <SellerNav username={username} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -106,7 +137,7 @@ export default function EditProduct() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#0a1d37" }}>
             <Inventory2Icon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -144,15 +175,15 @@ export default function EditProduct() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  onChange={handleInputChange}
-                  required
-                  fullWidth
-                  id="image_link"
-                  label="Image Link"
-                  name="image_link"
-                  value={product.image_link}
-                />
+                <label>
+                  Image:
+                  <input
+                    type="file"
+                    name="image123"
+                    onChange={handleFileChange}
+                  />
+                </label>
+                {product && <p>Selected file: {product?.image_link?.substring(0, 20) }</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -223,15 +254,16 @@ export default function EditProduct() {
                   value={product.country}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   onChange={handleInputChange}
                   required
                   fullWidth
-                  id="zip_code"
+                  id="zipCode"
                   label="Zip Code"
-                  name="zip_code"
-                  type="number"
+                  name="zipCode"
+                  type='number'
                   value={product.zipCode}
                 />
               </Grid>

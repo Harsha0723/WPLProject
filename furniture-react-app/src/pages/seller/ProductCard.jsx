@@ -65,10 +65,10 @@ const ProductCard = (props) => {
 
   const { id, title, category, price, username, imgUrl } = props;
   return (
-    <Col lg="3" md="4" className="mb-2">
+    <Col className="mb-2">
       <div className="product__item">
         <div className="product__img">
-          <motion.img whileHover={{ scale: 0.9 }} src={imgUrl} alt="Invalid Image Link" />
+          <motion.img style={{height:'253.56px'}} whileHover={{ scale: 0.9 }} src={imgUrl} alt="Invalid Image Link" />
         </div>
         <div className="p-2 product__info">
           <h3 className="product__name">

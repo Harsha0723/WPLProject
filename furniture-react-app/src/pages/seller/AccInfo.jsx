@@ -46,7 +46,7 @@ export default function AccInfo() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#3d85c6" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#0a1d37" }}>
             <PersonIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
