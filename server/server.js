@@ -47,7 +47,12 @@ passport.deserializeUser(async (id, fullfil) => {
   }
 });
 
-app.use(cors());
+// Use CORS middleware
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with the actual origin of your React app
+  credentials: true, // Enable credentials (cookies)
+}));
+
 
 //Init middleware, this allows us to get data from req.body
 app.use(express.json({ extended: false }));
@@ -58,12 +63,30 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+const authRoutes = require('./routes/auth');
 
 //Define routes
 app.use("/users", require("./routes/users"));
 app.use("/products", require("./routes/products"));
 app.use("/orders", require("./routes/orders"));
+app.use('/api', authRoutes);
 
-const port = 5000;
+app.post('/logout', (req, res) => {
+  try {
+    req.logout((err) => {
+      if (err) {
+        console.error('Logout error:', err);
+        return res.status(500).json({ message: 'Logout failed', error: err.message });
+      }
+      res.json({ message: 'Logout successful' });
+    });
+  } catch (error) {
+    console.error('Unexpected error during logout:', error);
+    res.status(500).json({ message: 'Logout failed unexpectedly', error: error.message });
+  }
+});
+
+
+const port = 5001;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

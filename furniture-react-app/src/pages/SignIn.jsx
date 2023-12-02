@@ -1,5 +1,8 @@
 import React from 'react';
 import Helmet from '../components/Helmet/Helmet';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from "axios";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,16 +17,34 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 
 import SlideshowGrid from '../components/SlideshowGrid';
-import Copyright from '../components/Copyright';
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    const loginData = {
+      username: data.get('username'),
+      password: data.get('password')
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5001/users/signin", 
+                        loginData);
+      if (response.status === 200) {
+        toast.success('User logged in.');
+        setTimeout(() => {
+          navigate('/home');
+        }, 1000);
+      } else {
+        // Signup failed
+        toast.error('Login Failed.');
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(`${error.response.data.message}`);
+    }
   };
   
   return (
@@ -52,10 +73,10 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -88,13 +109,12 @@ export default function SignInSide() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
-          <Copyright/>
         </Box>
       </Grid>
     </Grid>  

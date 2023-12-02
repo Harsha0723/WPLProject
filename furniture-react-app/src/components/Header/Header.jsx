@@ -2,16 +2,20 @@ import React, {useRef, useEffect} from 'react';
 import "./header.css"
 
 import logo from '../../assets/images/WebsiteLogo.png'
+import { toast } from 'react-toastify';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import Badge from '@mui/material/Badge';
+import axios from "axios";
 
 import {motion} from 'framer-motion'
 import {Container, Row} from 'reactstrap';
 import {useSelector} from "react-redux";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
+
+import useAuth from "../custom-hooks/useAuth"
 
 const nav__link = [
     {
@@ -37,6 +41,7 @@ const Header = () => {
 
     const menuRef = useRef(null);
     const navigate = useNavigate();
+    const currentUser = useAuth();
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
@@ -48,6 +53,24 @@ const Header = () => {
         })
     }
     
+    const logout = async () => {
+        try {
+            const response = await axios.post("http://localhost:5001/logout", null, {
+                withCredentials: true,
+              });
+      
+          if (response.status === 200) {
+            // Handle successful logout
+            toast.success('Logout successful');
+          } else {
+            // Handle logout failure
+            toast.error('Logout failed');
+          }
+        } catch (error) {
+          toast.error('Logout failed:', error.message);
+        }
+      };
+
     useEffect(() =>{
         stickyHeaderFunc()
         return ()=>window.removeEventListener("scroll", stickyHeaderFunc);
@@ -112,19 +135,19 @@ const Header = () => {
                             </motion.div>
 
                             <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
-                                {/* {currentUser ? (
+                                {currentUser ? (
                                     <span onClick={logout}>Logout</span>
                                 ): (
                                     <div className='d-flex align-items-center justify-content-center flex-column'>
                                          <Link to='/signup'>SignUp</Link>
                                         <Link to='/signin'>SignIn</Link>
                                     </div>
-                                )} */}
+                                )}
                                     
-                                <div className='d-flex align-items-center justify-content-center flex-column bordered'> 
+                                {/* <div className='d-flex align-items-center justify-content-center flex-column bordered'> 
                                     <Link to='/signup'>SignUp</Link>
                                     <Link to='/signin'>SignIn</Link>
-                                </div>       
+                                </div>        */}
                             </div>
                         </div>
                         <div className="mobile__menu">

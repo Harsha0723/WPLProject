@@ -14,20 +14,60 @@ const isValidEmail = (email) => {
   return emailRegex.test(email);
 };
 
+
+// Serialize user to the session
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// Deserialize user from the session
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
+
+const session = require('express-session');
+
+const app = express();
+
+// ...
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 router.post("/signup", async (req, res) => {
+  // const {
+  //   username,
+  //   email,
+  //   fname,
+  //   lname,
+  //   phone,
+  //   password,
+  //   street,
+  //   city,
+  //   country,
+  //   zipCode,
+  //   is_seller,
+  // } = req.body;
+
   const {
     username,
     email,
     fname,
     lname,
-    phone,
     password,
-    street,
-    city,
-    country,
-    zipCode,
-    is_seller,
   } = req.body;
+
 
   if (!/^[A-Za-z\s]+$/.test(username)) {
     return res.status(400).json({ message: "Invalid username format." });
@@ -37,11 +77,11 @@ router.post("/signup", async (req, res) => {
     return res.status(400).json({ message: "Invalid email format." });
   }
 
-  if (!/^\d+$/.test(phone)) {
-    return res
-      .status(400)
-      .json({ message: "Invalid phone format. Use numbers only." });
-  }
+  // if (!/^\d+$/.test(phone)) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: "Invalid phone format. Use numbers only." });
+  // }
 
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -53,20 +93,28 @@ router.post("/signup", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 8);
 
+    // const newUser = new User({
+    //   username,
+    //   password: hashedPassword,
+    //   email,
+    //   phone,
+    //   fname,
+    //   lname,
+    //   is_seller,
+    //   address: {
+    //     street: street,
+    //     city: city,
+    //     country: country,
+    //     zipCode: zipCode,
+    //   },
+    // });
+
     const newUser = new User({
       username,
       password: hashedPassword,
       email,
-      phone,
       fname,
       lname,
-      is_seller,
-      address: {
-        street: street,
-        city: city,
-        country: country,
-        zipCode: zipCode,
-      },
     });
     await newUser.save();
 
@@ -77,9 +125,27 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.json({ message: "Login successful" });
+router.post('/signin', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err); // Pass the error to the error handler middleware
+    }
+
+    if (!user) {
+      // Authentication failed
+      return res.status(401).json({ message: 'Login failed: Invalid username or password.' });
+    }
+
+    // Authentication successful
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.json({ message: 'Login successful' });
+    });
+  })(req, res, next);
 });
+
 
 router.get("/userInfo/:username", async (req, res) => {
   const username = req.params.username;
@@ -186,5 +252,6 @@ router.get('/fav_list/:username', async (req, res) => {
   if (productList) res.status(200).json(productList);
   else res.status(400).send("No Products Exists");
 });
+
 
 module.exports = router;
