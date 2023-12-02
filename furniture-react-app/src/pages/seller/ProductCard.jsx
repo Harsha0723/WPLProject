@@ -19,7 +19,7 @@ const handleDelete = async (id, username) => {
   try {
     // Make DELETE request to the server
     await axios.delete(
-      `http://localhost:5000/products/delete/${id}/${username}`
+      `http://localhost:5001/products/delete/${id}/${username}`
     );
 
     // Show success toast

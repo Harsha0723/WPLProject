@@ -22,7 +22,7 @@ export default function AccInfo() {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/users/userInfo/${username}`
+          `http://localhost:5001/users/userInfo/${username}`
         );
         setUserData(response.data);
       } catch (error) {

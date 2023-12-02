@@ -21,12 +21,12 @@ const ProductList = () => {
     const fetchUserProducts = async () => {
       try {
         // Fetch user info to get the sell_products_id
-        const userInfoResponse = await axios.get(`http://localhost:5000/users/userInfo/${username}`);
+        const userInfoResponse = await axios.get(`http://localhost:5001/users/userInfo/${username}`);
         const sellProductsIds = userInfoResponse.data.sell_products_id;
 
         // Fetch product details for each product ID
         const productDetailsPromises = sellProductsIds.map(async (productId) => {
-          const productDetailsResponse = await axios.get(`http://localhost:5000/products/details/${productId}`);
+          const productDetailsResponse = await axios.get(`http://localhost:5001/products/details/${productId}`);
           return productDetailsResponse.data;
         });
 

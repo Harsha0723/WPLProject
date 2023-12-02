@@ -44,7 +44,7 @@ const EditUserInfo = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/users/userInfo/${username}`
+          `http://localhost:5001/users/userInfo/${username}`
         );
         setUserData(response.data);
         setFormData({
@@ -76,7 +76,7 @@ const EditUserInfo = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:5000/users/edit/${username}`, formData);
+      await axios.put(`http://localhost:5001/users/edit/${username}`, formData);
       console.log("User information updated successfully");
 
       toast.success("Account info updated successfully", {

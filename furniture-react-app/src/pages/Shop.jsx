@@ -15,7 +15,7 @@ const Shop = () => {
     const fetchProducts = async () => {
       try {
         const productsData = await axios.get(
-          `http://localhost:5000/products/list`
+          `http://localhost:5001/products/list`
         );
           console.log(productsData.data);
         setProductsData(productsData.data);

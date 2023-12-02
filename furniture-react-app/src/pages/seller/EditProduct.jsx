@@ -46,7 +46,7 @@ export default function EditProduct() {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/details/${productId}`
+          `http://localhost:5001/products/details/${productId}`
         );
         setProduct({
           ...product,
@@ -98,7 +98,7 @@ export default function EditProduct() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/products/edit/${productId}`,
+        `http://localhost:5001/products/edit/${productId}`,
         productData, {
           headers: {
             "Content-Type": "multipart/form-data",

@@ -56,7 +56,7 @@ export default function AddProduct() {
 
       // Make the Axios POST request to your API
       const response = await axios.post(
-        "http://localhost:5000/products/add",
+        "http://localhost:5001/products/add",
         productData,
         {
           headers: {
