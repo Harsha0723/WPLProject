@@ -34,7 +34,7 @@ const products = [
   {
     id: "01",
     productName: "Stone and Beam Westview ",
-    imgUrl: productImg01,
+    image_link: productImg01,
     category: "sofa",
     price: 193,
     shortDesc:
@@ -53,7 +53,7 @@ const products = [
   {
     id: "02",
     productName: "Rivet Bigelow Modern ",
-    imgUrl: productImg02,
+    image_link: productImg02,
     category: "sofa",
     price: 253,
     shortDesc:
@@ -76,7 +76,7 @@ const products = [
   {
     id: "03",
     productName: "Amazon Brand Modern Sofa",
-    imgUrl: productImg03,
+    image_link: productImg03,
     category: "sofa",
     price: 173,
     shortDesc:
@@ -98,7 +98,7 @@ const products = [
   {
     id: "26",
     productName: "Rivet Bigelow Modern ",
-    imgUrl: productImg02,
+    image_link: productImg02,
     category: "sofa",
     price: 253,
     shortDesc:
@@ -120,7 +120,7 @@ const products = [
   {
     id: "04",
     productName: "Fllufy Sheep Sofa",
-    imgUrl: productImg04,
+    image_link: productImg04,
     category: "sofa",
     price: 163,
     shortDesc:
@@ -143,7 +143,7 @@ const products = [
   {
     id: "05",
     productName: "Faux Velvet Sofa",
-    imgUrl: productImg05,
+    image_link: productImg05,
     category: "sofa",
     price: 163,
     shortDesc:
@@ -166,7 +166,7 @@ const products = [
   {
     id: "06",
     productName: "Fllufy Sheep Sofa",
-    imgUrl: productImg06,
+    image_link: productImg06,
     category: "sofa",
     price: 163,
     shortDesc:
@@ -188,7 +188,7 @@ const products = [
   {
     id: "07",
     productName: "Sakarias Armchair",
-    imgUrl: productImg07,
+    image_link: productImg07,
     category: "chair",
     price: 99,
     shortDesc:
@@ -211,7 +211,7 @@ const products = [
   {
     id: "27",
     productName: "Modern Arm Sofa",
-    imgUrl: productImg007,
+    image_link: productImg007,
     category: "sofa",
     price: 173,
     shortDesc:
@@ -234,7 +234,7 @@ const products = [
   {
     id: "08",
     productName: "Baltsar Chair",
-    imgUrl: productImg08,
+    image_link: productImg08,
     category: "chair",
     price: 89,
     shortDesc:
@@ -257,7 +257,7 @@ const products = [
   {
     id: "09",
     productName: "Helmar Chair",
-    imgUrl: productImg09,
+    image_link: productImg09,
     category: "chair",
     price: 112,
     shortDesc:
@@ -280,7 +280,7 @@ const products = [
   {
     id: "10",
     productName: "Upholstered Bed Frame",
-    imgUrl: productImg10,
+    image_link: productImg10,
     category: "bed",
     price: 585,
     shortDesc:
@@ -302,7 +302,7 @@ const products = [
   {
     id: "11",
     productName: "Storage Bed",
-    imgUrl: productImg12,
+    image_link: productImg12,
     category: "bed",
     price: 630,
     shortDesc:
@@ -324,7 +324,7 @@ const products = [
   {
     id: "12",
     productName: "Wooden Bed Frame",
-    imgUrl: productImg13,
+    image_link: productImg13,
     category: "bed",
     price: 675,
     shortDesc:
@@ -346,7 +346,7 @@ const products = [
   {
     id: "13",
     productName: "Wooden Platform Bed",
-    imgUrl: productImg14,
+    image_link: productImg14,
     category: "bed",
     price: 495,
     shortDesc:
@@ -368,7 +368,7 @@ const products = [
   {
     id: "14",
     productName: "The Platform Bed",
-    imgUrl: productImg15,
+    image_link: productImg15,
     category: "bed",
     price: 150,
     shortDesc:
@@ -390,7 +390,7 @@ const products = [
   {
     id: "15",
     productName: "Table de chevet en rotin - 1 tiroir",
-    imgUrl: productImg16,
+    image_link: productImg16,
     category: "table",
     price: 375,
     shortDesc:
@@ -412,7 +412,7 @@ const products = [
   {
     id: "16",
     productName: "Table de chevet en rotin - 1 tiroir",
-    imgUrl: productImg17,
+    image_link: productImg17,
     category: "table",
     price: 403,
     shortDesc:
@@ -434,7 +434,7 @@ const products = [
   {
     id: "17",
     productName: "Table de chevet en bois",
-    imgUrl: productImg18,
+    image_link: productImg18,
     category: "table",
     price: 215,
     shortDesc:
@@ -456,7 +456,7 @@ const products = [
   {
     id: "18",
     productName: "Table de chevet en bois - Acacia foncé",
-    imgUrl: productImg19,
+    image_link: productImg19,
     category: "table",
     price: 225,
     shortDesc:

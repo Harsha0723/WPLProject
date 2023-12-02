@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const product = products.find((item) => item.id === id);
   const {
-    imgUrl,
+    image_link,
     productName,
     price,
     avgRating,
@@ -27,7 +27,7 @@ const ProductDetails = () => {
   } = product;
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("hello product", product?.imgUrl);
+    console.log("hello product", product?.image_link);
   });
 
   const addToCart = () => {
@@ -35,7 +35,7 @@ const ProductDetails = () => {
       cartActions.addItem({
         id,
         productName,
-        imgUrl,
+        image_link,
         price
       })
     );
@@ -50,7 +50,7 @@ const ProductDetails = () => {
         <Container>
           <Row>
             <Col lg-6>
-              <img src={imgUrl} alt="" />
+              <img src={image_link} alt="" />
             </Col>
             <Col lg-6>
               <div className="product_details mb-3">

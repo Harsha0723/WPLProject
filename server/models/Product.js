@@ -3,20 +3,15 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
   },
   category: {
     type: String,
-    required: true,
   },
-  image_link: [
-    {
-      type: String,
-    },
-  ],
+  image_link: {
+    type: String,
+  },
   seller_id: {
     type: String,
-    required: true,
   },
   price: {
     mrp: {
@@ -52,11 +47,11 @@ const ProductSchema = new mongoose.Schema({
   },
   is_sold: {
     type: Boolean,
-    default:false
+    default: false,
   },
   quantity: {
     type: Number,
-    default:1
+    default: 1,
   },
 });
 

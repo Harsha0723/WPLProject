@@ -1,70 +1,26 @@
 import React from "react";
-import { styled } from "@mui/system";
-import DeleteIcon from "@mui/icons-material/Delete";
+
+import { motion } from "framer-motion";
+import "../../styles/product-card.css";
+import { Col } from "reactstrap";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../redux/slices/cartSlice";
+import MenuIcon from "@mui/icons-material/Menu";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const ProductCardContainer = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  border: "1px solid #ccc",
-  borderRadius: "8px",
-  overflow: "hidden",
-  marginBottom: (theme) => theme.spacing(2),
-});
-
-const ProductImg = styled("div")({
-  height: "150px",
-  overflow: "hidden",
-  "& img": {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-});
-
-const ProductInfo = styled("div")({
-  padding: (theme) => theme.spacing(2),
-});
-
-const ProductName = styled("h3")({
-  fontSize: "1.2rem",
-  fontWeight: "bold",
-  marginBottom: (theme) => theme.spacing(1),
-});
-
-const ProductCategory = styled("span")({
-  textAlign: "center",
-  color: "#555",
-});
-
-const ProductCardBottom = styled("div")({
-  display: "flex",
-  justifyContent: "space-between",
-  padding: (theme) => theme.spacing(1, 2),
-  backgroundColor: "#f5f5f5",
-  alignItems:'center',
-  padding:'0px 20px'
-});
-
-const Price = styled("span")({
-  color: "#ff5722",
-  fontWeight: "bold",
-});
-
-const Icon = styled("span")({
-  paddingTop:'4px',
-  cursor: "pointer",
-});
-const Edit = styled("span")({
-  paddingTop:'4px',
-  cursor: "pointer",
-});
-const handleDelete = async (id,username) => {
+const handleDelete = async (id, username) => {
   try {
     // Make DELETE request to the server
-    await axios.delete(`http://localhost:5000/products/delete/${id}/${username}`);
+    await axios.delete(
+      `http://localhost:5000/products/delete/${id}/${username}`
+    );
 
     // Show success toast
     toast.success("Product deleted successfully", {
@@ -95,39 +51,48 @@ const handleDelete = async (id,username) => {
   }
 };
 
-
-
 const ProductCard = (props) => {
+
   const navigate = useNavigate();
 
-  const handleEdit = (id,username) => {
+  const handleEdit = (id, username) => {
     try {
-      navigate(`/seller/edit_product/${username}/${id}`,{replace:true})
-    } catch(error) {
-      console.error("Error Editing Product",error);
+      navigate(`/seller/edit_product/${username}/${id}`);
+    } catch (error) {
+      console.error("Error Editing Product", error);
     }
-  }
-  const {id,title,category,price,username} = props;
+  };
+
+  const { id, title, category, price, username, image_link } = props;
   return (
-    <ProductCardContainer>
-      <ProductImg>
-        <img src="" alt="Product" />
-      </ProductImg>
-      <ProductInfo>
-        <ProductName>{title}</ProductName>
-        <ProductCategory>{category}</ProductCategory>
-      </ProductInfo>
-      <ProductCardBottom>
-        {" "}
-        <Price>${price}</Price>
-        <Edit onClick={()=> handleEdit(id,username)}>
-          {'Edit'}
-        </Edit>
-        <Icon onClick={()=> handleDelete(id,username)}>
-          <DeleteIcon />
-        </Icon>
-      </ProductCardBottom>
-    </ProductCardContainer>
+    <Col className="mb-2">
+      <div className="product__item">
+        <div className="product__img">
+          <motion.img style={{height:'253.56px'}} whileHover={{ scale: 0.9 }} src={image_link} alt="Invalid Image Link" />
+        </div>
+        <div className="p-2 product__info">
+          <h3 className="product__name">
+            <Link to={`/shop/${id}`}>{title}</Link>
+          </h3>
+          <span>{category}</span>
+        </div>
+        <div className="product__card-bottom d-flex align-items-center justify-content-between p-2" style={{width:'200px'}}>
+          <span className="price">${price}</span>
+          <motion.span
+            whileTap={{ scale: 1.2 }}
+            onClick={() => handleEdit(id, username)}
+          >
+            <EditIcon/>
+          </motion.span>
+          <motion.span
+            whileTap={{ scale: 1.2 }}
+            onClick={() => handleDelete(id, username)}
+          >
+            <DeleteIcon/>
+          </motion.span>
+        </div>
+      </div>
+    </Col>
   );
 };
 

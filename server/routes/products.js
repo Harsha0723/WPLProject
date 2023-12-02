@@ -4,12 +4,17 @@ const Product = require("../models/Product");
 const Order = require("../models/Order");
 const User = require("../models/User");
 const mongoose = require("mongoose");
+const multer = require('multer');
 
-router.post("/add", async (req, res) => {
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage,  limits: {
+  fieldSize: 10 * 1024 * 1024, // 10 MB (adjust as needed)
+}, });
+
+router.post("/add", upload.single('image123'), async (req, res) => {
   const {
     title,
     category,
-    image_link,
     seller_id,
     mrp,
     tax,
@@ -26,7 +31,7 @@ router.post("/add", async (req, res) => {
     const newProduct = new Product({
       title,
       category,
-      image_link,
+      image_link:`data:image/png;base64,${req.file.buffer.toString('base64')}`,
       seller_id,
       price: {
         mrp: mrp,
@@ -125,7 +130,7 @@ router.delete("/delete/:id/:username", async (req, res) => {
   else res.status(200).send("Product deleted successfully");
 });
 
-router.put("/edit/:id", async (req, res) => {
+router.put("/edit/:id", upload.single('image123'),async (req, res) => {
   const product_id = req.params.id;
   const {
     title,
@@ -146,15 +151,21 @@ router.put("/edit/:id", async (req, res) => {
     {
       title,
       category,
-      image_link,
+      image_link:req.file ? `data:image/png;base64,${req.file.buffer.toString('base64')}` : image_link,
       seller_id,
-      mrp,
-      tax,
-      shipping_cost,
-      street,
-      city,
-      country,
-      zipCode,
+      price: {
+        mrp: mrp,
+        tax: tax,
+        shipping_cost: shipping_cost,
+      },
+      product_address: {
+        street: street,
+        city: city,
+        country: country,
+        zipCode: zipCode,
+      },
+
+  
       quantity,
     }
   );
