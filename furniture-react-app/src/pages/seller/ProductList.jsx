@@ -53,7 +53,7 @@ const ProductList = () => {
           category={product.category}
           price={product.price.mrp}
           username={username}
-          imgUrl={product.image_link}
+          image_link={product.image_link}
         />
       ))}
     </ProductListContainer>

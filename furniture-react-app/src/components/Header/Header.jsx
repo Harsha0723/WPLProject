@@ -51,7 +51,7 @@ const Header = () => {
     useEffect(() =>{
         stickyHeaderFunc()
         return ()=>window.removeEventListener("scroll", stickyHeaderFunc);
-    });
+    },[]);
 
     const menuToggle = () => menuRef.current.classList.toggle("active__menu");
     

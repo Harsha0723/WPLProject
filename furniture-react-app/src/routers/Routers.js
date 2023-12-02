@@ -11,6 +11,7 @@ import EditProduct from "../pages/seller/EditProduct";
 import ProductList from "../pages/seller/ProductList";
 import AccInfo from "../pages/seller/AccInfo";
 import EditAccountInfo from "../pages/seller/EditAccountInfo";
+import Checkout from "../pages/checkout.jsx"
 
 
 const Routers = () => {
@@ -23,7 +24,8 @@ const Routers = () => {
         <Route path="cart" element= {<Cart/>} />
         <Route path="shop/:id" element= {<ProductDetails/>} />
         <Route path="signup" element= {<SignUp/>} />
-        <Route path="signin" element= {<SignIn/>} />                            
+        <Route path="signin" element= {<SignIn/>} />       
+        <Route path="checkout" element= {<Checkout/>} />                            
         <Route path="seller/add_product/:username" element= {<AddProduct/>} />
         <Route path="seller/edit_product/:username/:productId" element= {<EditProduct/>} />
         <Route path="seller/product_list/:username" element= {<ProductList/>} />
