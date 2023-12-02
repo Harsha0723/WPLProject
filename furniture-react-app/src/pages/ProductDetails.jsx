@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const product = products.find((item) => item.id === id);
   const {
     image_link,
-    productName,
+    title,
     price,
     avgRating,
     review,
@@ -34,7 +34,7 @@ const ProductDetails = () => {
     dispatch(
       cartActions.addItem({
         id,
-        productName,
+        title,
         image_link,
         price
       })
@@ -44,8 +44,8 @@ const ProductDetails = () => {
   };
 
   return (
-    <Helmet title={productName}>
-      <CommonSection title={productName} />
+    <Helmet title={title}>
+      <CommonSection title={title} />
       <section className="pt-0">
         <Container>
           <Row>
@@ -54,7 +54,7 @@ const ProductDetails = () => {
             </Col>
             <Col lg-6>
               <div className="product_details mb-3">
-                <h2>{productName}</h2>
+                <h2>{title}</h2>
                 <div className="product_rating d-flex align-items-center gap-5 mb-3">
                   <div>
                     <span>

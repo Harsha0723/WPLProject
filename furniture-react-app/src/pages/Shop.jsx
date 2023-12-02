@@ -40,7 +40,7 @@ const Shop = () => {
 
   const handleSearch = (e) => {
     const searchItem = e.target.value;
-    const searchedProd = products.filter(item => item?.productName.toLowerCase().includes(searchItem.toLowerCase()));
+    const searchedProd = products.filter(item => item?.title.toLowerCase().includes(searchItem.toLowerCase()));
     setProductsData(searchedProd);
   };
 
