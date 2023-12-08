@@ -17,17 +17,13 @@ const Cart = () => {
     const totalAmount = useSelector(state=>state.cart.totalAmount);
 
     useEffect(() => {
-        // Load cart items from localStorage on component mount
         const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        storedCartItems.forEach(cartItem => {
-            dispatch(cartActions.addItem(cartItem));
-        });     
-      }, [dispatch]);
+        dispatch(cartActions.setCartItems(storedCartItems));
+    }, [dispatch]);
     
-      useEffect(() => {
-        // Save cart items to localStorage whenever the cartItems state changes
+    useEffect(() => {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      }, [cartItems]);
+    }, [cartItems]);
 
     return (
         <Helmet title="Cart">
