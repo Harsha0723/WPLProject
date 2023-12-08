@@ -41,7 +41,9 @@ const Header = () => {
 
     const menuRef = useRef(null);
     const navigate = useNavigate();
-    const currentUser = useAuth();
+    const { logoutCallback } = useAuth();
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn")
+    console.log(isLoggedIn)
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
@@ -62,6 +64,8 @@ const Header = () => {
           if (response.status === 200) {
             // Handle successful logout
             toast.success('Logout successful');
+            logoutCallback();
+            navigate('/home')
           } else {
             // Handle logout failure
             toast.error('Logout failed');
@@ -135,19 +139,12 @@ const Header = () => {
                             </motion.div>
 
                             <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
-                                {currentUser ? (
-                                    <span onClick={logout}>Logout</span>
-                                ): (
+                                {isLoggedIn === "true" ? (<span onClick={logout}>Logout</span>): (
                                     <div className='d-flex align-items-center justify-content-center flex-column'>
                                          <Link to='/signup'>SignUp</Link>
                                         <Link to='/signin'>SignIn</Link>
                                     </div>
-                                )}
-                                    
-                                {/* <div className='d-flex align-items-center justify-content-center flex-column bordered'> 
-                                    <Link to='/signup'>SignUp</Link>
-                                    <Link to='/signin'>SignIn</Link>
-                                </div>        */}
+                                )}    
                             </div>
                         </div>
                         <div className="mobile__menu">

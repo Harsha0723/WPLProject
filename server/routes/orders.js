@@ -5,9 +5,6 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 const mongoose = require("mongoose");
 
-
-
-
 router.post("/payment", async (req, res) => {
   const {
     product_id,

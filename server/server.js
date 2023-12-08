@@ -63,13 +63,11 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-const authRoutes = require('./routes/auth');
 
 //Define routes
 app.use("/users", require("./routes/users"));
 app.use("/products", require("./routes/products"));
 app.use("/orders", require("./routes/orders"));
-app.use('/api', authRoutes);
 
 app.post('/logout', (req, res) => {
   try {

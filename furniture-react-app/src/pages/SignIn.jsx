@@ -17,9 +17,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 
 import SlideshowGrid from '../components/SlideshowGrid';
+import useAuth from '../components/custom-hooks/useAuth'
 
 export default function SignInSide() {
   const navigate = useNavigate();
+  const { isLoggedIn, loginCallback } = useAuth();
+
   const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -34,6 +37,8 @@ export default function SignInSide() {
                         loginData);
       if (response.status === 200) {
         toast.success('User logged in.');
+        loginCallback();
+        console.log(isLoggedIn)
         setTimeout(() => {
           navigate('/home');
         }, 1000);

@@ -1,16 +1,21 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
 const useAuth = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    axios.get('/api/current-user') // Replace with your server route to get the current user
-      .then(response => setCurrentUser(response.data))
-      .catch(error => setCurrentUser(null));
-  }, []);
+  const loginCallback = () => {
+    console.log("In loginCallback");
+    setLoggedIn(true);
+    sessionStorage.setItem("isLoggedIn", "true");
+  };
 
-  return { currentUser };
+  const logoutCallback = () => {
+    console.log("In logout callback")
+    setLoggedIn(false);
+    sessionStorage.setItem("isLoggedIn", "false");
+  };
+
+  return { isLoggedIn, loginCallback, logoutCallback };
 };
 
 export default useAuth;
