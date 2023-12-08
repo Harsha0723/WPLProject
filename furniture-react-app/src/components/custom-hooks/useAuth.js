@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../redux/slices/cartSlice';
 
 const useAuth = () => {
+  const dispatch = useDispatch();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   const loginCallback = () => {
@@ -13,6 +16,11 @@ const useAuth = () => {
     console.log("In logout callback")
     setLoggedIn(false);
     sessionStorage.setItem("isLoggedIn", "false");
+    console.log("Cart Items Before:",localStorage.getItem("cartItems"))
+    localStorage.removeItem("cartItems");
+    console.log("Cart Items After:",localStorage.getItem("cartItems"))
+    console.log("Clear cart")
+    dispatch(cartActions.clearCart());
   };
 
   return { isLoggedIn, loginCallback, logoutCallback };

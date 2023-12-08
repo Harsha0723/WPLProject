@@ -65,7 +65,9 @@ const Header = () => {
             // Handle successful logout
             toast.success('Logout successful');
             logoutCallback();
-            navigate('/home')
+            setTimeout(() => {
+                navigate('/home');
+              }, 500);
           } else {
             // Handle logout failure
             toast.error('Logout failed');
