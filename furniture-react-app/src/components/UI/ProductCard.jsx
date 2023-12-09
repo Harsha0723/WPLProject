@@ -23,7 +23,7 @@ const ProductCard = ({item}) => {
             image_link: item.image_link,
         }));
 
-        toast.success("Product added successfully.")
+        toast.success("Product added successfully.", { autoClose: 5 })
     };
 
     return (

@@ -116,11 +116,11 @@ export default function EditProduct() {
 
       console.log("Product updated successfully:", response.data);
 
-      toast.success("Product updated successfully");
+      toast.success("Product updated successfully", { autoClose: 5 });
       // history.push(`/products/details/${productId}`);
     } catch (error) {
       console.error("Error updating product:", error);
-      toast.error("Error updating product");
+      toast.error("Error updating product", { autoClose: 10 });
     }
   };
 

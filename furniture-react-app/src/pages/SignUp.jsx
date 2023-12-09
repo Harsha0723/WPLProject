@@ -45,7 +45,7 @@ export default function SignUp() {
 
       if (response.status === 200) {
         // Signup successful
-        toast.success('User registered successfully. Redirecting to login...');
+        toast.success('User registered successfully. Redirecting to login...', { autoClose: 5 });
         // Optionally, you can redirect the user to the login page or perform other actions
         setTimeout(() => {
           // Optionally, you can redirect the user to the login page or perform other actions
@@ -53,11 +53,11 @@ export default function SignUp() {
         }, 2000);
       } else {
         // Signup failed
-        toast.error('Failed to register user.');
+        toast.error('Failed to register user.', { autoClose: 10 });
       }
     } catch (error) {
       console.log(error)
-      toast.error(`Error: ${error.response.data.message}`);
+      toast.error(`Error: ${error.response.data.message}`, { autoClose: 10 });
     }
   };
 

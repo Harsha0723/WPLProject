@@ -37,7 +37,7 @@ const Shop = () => {
       const fileredProd = productsData.filter(
         (item) => item?.category === filterVal
       );
-      if (e.target.value == "Filter By Category") {
+      if (e.target.value === "Filter By Category") {
         setProductsData(initialProds);
       } else {
         setProductsData(fileredProd);

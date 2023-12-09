@@ -71,7 +71,7 @@ export default function AddProduct() {
       // Show success toast
       toast.success("Product added successfully", {
         position: "top-right",
-        autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
+        autoClose: 100, // Close the toast after 3000 milliseconds (3 seconds)
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -83,7 +83,7 @@ export default function AddProduct() {
       console.error("Error adding product:", error);
       toast.error("Failed to add product", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

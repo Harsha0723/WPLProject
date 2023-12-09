@@ -57,7 +57,7 @@ const ProductDetails = () => {
       })
     );
 
-    toast.success('Product added to cart successfully!')
+    toast.success('Product added to cart successfully!', { autoClose: 5 })
   };
 
   return (
