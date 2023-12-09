@@ -44,11 +44,11 @@ export default function SignInSide() {
         }, 500);
       } else {
         // Signup failed
-        toast.error('Login Failed.', { autoClose: 5 });
+        toast.error('Login Failed.', { autoClose: 15 });
       }
     } catch (error) {
       console.log(error)
-      toast.error(`${error.response.data.message}`, { autoClose: 5 });
+      toast.error(`${error.response.data.message}`, { autoClose: 15 });
     }
   };
   

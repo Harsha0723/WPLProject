@@ -22,13 +22,6 @@ import productImg16 from "../images/table-01.webp";
 import productImg17 from "../images/table-02.webp";
 import productImg18 from "../images/table-03.webp";
 import productImg19 from "../images/table-04.webp";
-import productImg20 from "../images/watch-02.jpg";
-import productImg21 from "../images/watch-03.jpg";
-import productImg22 from "../images/watch-04.jpg";
-
-import productImg23 from "../images/wireless-01.png";
-
-import productImg25 from "../images/wireless-03.png";
 
 const products = [
   {
@@ -372,7 +365,7 @@ const products = [
     category: "bed",
     price: 150,
     shortDesc:
-      "Our no-nonsense platform bed can also function as a box spring. providing support with a simple design,",
+      "Our no-nonsense platform bed can also function as a box spring. providing support with a simple design.",
     description:
       "With a solid base to provide ideal support for any mattress, our Platform Bed combines timeless design with effortless convenience.",
     reviews: [
@@ -455,7 +448,7 @@ const products = [
   },
   {
     id: "18",
-    title: "Table de chevet en bois - Acacia foncé",
+    title: "t",
     image_link: productImg19,
     category: "table",
     price: 225,
