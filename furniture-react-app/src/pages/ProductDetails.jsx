@@ -4,10 +4,6 @@ import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import "../styles/productDetails.css";
-import products from "../assets/data/products";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
-import StarIcon from "@mui/icons-material/Star";
-import Button from "@mui/material/Button"
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
@@ -34,7 +30,7 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  const { image_link, title, avgRating, review, description, shortDesc } =
+  const { image_link, title, description } =
     product;
   const price = product.price;
   const mrp = price?.mrp;
@@ -56,7 +52,7 @@ const ProductDetails = () => {
   return (
     <Helmet title={title}>
       <CommonSection title={title} />
-      <section className="pt-0">
+      {product ? <section className="pt-0">
         <Container>
           <Row>
           <Col lg={6} className="mt-3">
@@ -64,49 +60,18 @@ const ProductDetails = () => {
           </Col>
             <Col lg-6>
               <div className="product_details mb-3">
-                <h2>{title}</h2>
-                <div className="product_rating d-flex align-items-center gap-5 mb-3">
-                  <div>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarHalfIcon />
-                    </span>
-                  </div>
-                  <p>
-                    (<span>{avgRating}</span> ratings)
-                  </p>
-                </div>
+                <h1><b>{title}</b></h1>
+               
                 <span className="product_price">${mrp}</span>
                 <p>{description}</p>
 
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button><br/>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={() => window.location.href = '/shop'}>Back</motion.button>
               </div>
             </Col>
           </Row>
         </Container>
-      </section>
-
-      {/* review section */}
-      <section>
-        <Container>
-          <Row>
-            <Col lg="12">
-              <div className="tab-wrapper"></div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      </section> : ""}
     </Helmet>
   );
 };

@@ -11,6 +11,8 @@ import axios from "axios";
 const Shop = () => {
   const [productsData, setProductsData] = useState([]);
   const [initialProds, setInitialProds] = useState([]);
+  const [filterVal, setFilterVal] = useState("Filter By Category");
+  const [searchVal, setSearchVal] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,7 +20,7 @@ const Shop = () => {
         const productsData = await axios.get(
           `http://localhost:5001/products/list`
         );
-          console.log(productsData.data);
+        console.log(productsData.data);
         setProductsData(productsData.data);
         setInitialProds(productsData.data);
       } catch (error) {
@@ -29,39 +31,44 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
-
   const handleFilter = (e) => {
-    console.log('hello filter - ', e.target.value);
-    const filterVal = e.target.value;
-    if (filterVal) {
-      const fileredProd = productsData.filter(
-        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
-      );
-      if (e.target.value == "Filter By Category") {
-        setProductsData(initialProds);
-      } else {
-        setProductsData(fileredProd);
-      }
-    }
+    console.log("hello filter - ", e.target.value);
+    const filterItem = e.target.value;
+    setFilterVal(filterItem);
+    handleDisplay(filterItem, searchVal);
   };
 
   const handleSearch = (e) => {
-    console.log('hello search - ', e.target.value);
+    console.log("hello search - ", e.target.value);
     const searchItem = e.target.value;
-    const searchedProd = initialProds.filter(item => item?.title.toLowerCase().includes(searchItem.toLowerCase()));
-    if (e.target.value !== "") {
-      console.log('hello search 1- ', e.target.value, searchedProd);
-      setProductsData(searchedProd);
-    } else {
-      console.log('hello search 2- ', e.target.value, initialProds);
-      setInitialProds(initialProds);
-    }
+    setSearchVal(searchItem);
+    handleDisplay(filterVal, searchItem);
   };
 
-  const handleSort = (e) => {
-    console.log('hello sort val - ', e.target.value);
-    
+  const handleDisplay = (filterVal, searchVal) => {
+    console.log("hello search and filter val --", searchVal, filterVal);
+    var prods = initialProds;
+    if (searchVal === "" && filterVal === "Filter By Category") {
+      prods = initialProds;
+    } else if (searchVal && filterVal === "Filter By Category") {
+      prods = productsData.filter((item) =>
+        item?.title.toLowerCase().includes(searchVal.toLowerCase())
+      );
+    } else if (searchVal === "" && filterVal !== "Filter By Category") {
+      prods = initialProds.filter(
+        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
+      );
+    } else {
+      prods = initialProds.filter(
+        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
+      );
+      prods = prods.filter((item) =>
+        item?.title.toLowerCase().includes(searchVal.toLowerCase())
+      );
+    }
+    setProductsData(prods);
   };
+
 
   return (
     <Helmet title="Shop">
@@ -69,7 +76,7 @@ const Shop = () => {
       <section>
         <Container>
           <Row class="Shop">
-            <Col lg="3" md="3" sm="6">
+            <Col lg={5} md="6" sm={6}>
               <div className="filter__widget">
                 <select onChange={handleFilter}>
                   <option>Filter By Category</option>
@@ -80,16 +87,7 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg="3" md="3" sm="6">
-              <div className="filter__widget">
-                <select onChange={handleSort}>
-                  <option>Sort By</option>
-                  <option value="asc">Ascending</option>
-                  <option value="desc">Descending</option>
-                </select>
-              </div>
-            </Col>
-            <Col lg="6" md="6">
+            <Col lg={6} md={6}>
               <div className="search_box">
                 <input
                   type="text"
@@ -108,8 +106,12 @@ const Shop = () => {
       <section>
         <Container>
           <Row>
-            {productsData.length === 0 ? (
-              <h1>Products Loading</h1>
+            {initialProds.length === 0 ? (
+              <h1>Products Loading...</h1>
+            ) : productsData.length === 0 ? (
+              <>
+              <h1>No Products Found!!</h1>
+              </>
             ) : (
               <ProductsList data={productsData} />
             )}

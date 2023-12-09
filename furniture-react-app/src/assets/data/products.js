@@ -271,7 +271,6 @@ const products = [
     ],
     avgRating: 4.7,
   },
-
   {
     id: "21",
     title: "Swivel Accent Chair",
