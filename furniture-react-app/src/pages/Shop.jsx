@@ -20,7 +20,7 @@ const Shop = () => {
         const productsData = await axios.get(
           `http://localhost:5001/products/list`
         );
-          console.log(productsData.data);
+        console.log(productsData.data);
         setProductsData(productsData.data);
         setInitialProds(productsData.data);
       } catch (error) {
@@ -31,28 +31,29 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
-
   const handleFilter = (e) => {
-    console.log('hello filter - ', e.target.value);
+    console.log("hello filter - ", e.target.value);
     const filterItem = e.target.value;
     setFilterVal(filterItem);
     handleDisplay(filterItem, searchVal);
   };
 
   const handleSearch = (e) => {
-    console.log('hello search - ', e.target.value);
+    console.log("hello search - ", e.target.value);
     const searchItem = e.target.value;
     setSearchVal(searchItem);
     handleDisplay(filterVal, searchItem);
   };
 
   const handleDisplay = (filterVal, searchVal) => {
-    console.log('hello search and filter val --', searchVal, filterVal);
+    console.log("hello search and filter val --", searchVal, filterVal);
     var prods = initialProds;
     if (searchVal === "" && filterVal === "Filter By Category") {
       prods = initialProds;
     } else if (searchVal && filterVal === "Filter By Category") {
-      prods = productsData.filter(item => item?.title.toLowerCase().includes(searchVal.toLowerCase()));
+      prods = productsData.filter((item) =>
+        item?.title.toLowerCase().includes(searchVal.toLowerCase())
+      );
     } else if (searchVal === "" && filterVal !== "Filter By Category") {
       prods = initialProds.filter(
         (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
@@ -61,14 +62,15 @@ const Shop = () => {
       prods = initialProds.filter(
         (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
       );
-      prods = prods.filter(item => item?.title.toLowerCase().includes(searchVal.toLowerCase()));
+      prods = prods.filter((item) =>
+        item?.title.toLowerCase().includes(searchVal.toLowerCase())
+      );
     }
     setProductsData(prods);
   };
 
   const handleSort = (e) => {
-    console.log('hello sort val - ', e.target.value);
-    
+    console.log("hello sort val - ", e.target.value);
   };
 
   return (
@@ -116,8 +118,12 @@ const Shop = () => {
       <section>
         <Container>
           <Row>
-            {productsData.length === 0 ? (
-              <h1>Products Loading</h1>
+            {initialProds.length === 0 ? (
+              <h1>Products Loading...</h1>
+            ) : productsData.length === 0 ? (
+              <>
+              <h1>No Products Found!!</h1>
+              </>
             ) : (
               <ProductsList data={productsData} />
             )}
