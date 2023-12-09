@@ -77,6 +77,22 @@ router.post("/signup", async (req, res) => {
     return res.status(400).json({ message: "Invalid email format." });
   }
 
+  // Password rules
+  const passwordMinLength = 8;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+  if (password.length < passwordMinLength) {
+    return res.status(400).json({
+      message: `Password must be at least ${passwordMinLength} characters long.`,
+    });
+  }
+
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      message: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.",
+    });
+  }
+
   // if (!/^\d+$/.test(phone)) {
   //   return res
   //     .status(400)
@@ -177,6 +193,8 @@ router.get("/userInfo/:username", async (req, res) => {
 });
 
 router.put("/edit/:username", async (req, res) => {
+  console.log("IN edit")
+  console.log(req)
   const userId = req.params.username;
   const {username, fname, lname, phone, street, city, country, zipCode } = req.body;
   const result = await User.findOneAndUpdate(

@@ -141,7 +141,12 @@ const Header = () => {
                             </motion.div>
 
                             <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
-                                {isLoggedIn === "true" ? (<span onClick={logout}>Logout</span>): (
+                                {isLoggedIn === "true" ? (
+                                    <div className='d-flex align-items-center justify-content-center flex-column'>
+                                        <Link to='/profile'>Profile</Link>
+                                        <span onClick={logout}>Logout</span>
+                                    </div>
+                                ): (
                                     <div className='d-flex align-items-center justify-content-center flex-column'>
                                          <Link to='/signup'>SignUp</Link>
                                         <Link to='/signin'>SignIn</Link>
