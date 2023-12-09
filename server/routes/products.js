@@ -21,10 +21,12 @@ router.post("/add", upload.single('image123'), async (req, res) => {
     shipping_cost,
     street,
     city,
-    country,
+    state,
     zipCode,
     quantity,
     username,
+    description,
+    shortDesc
   } = req.body;
 
   try {
@@ -41,10 +43,12 @@ router.post("/add", upload.single('image123'), async (req, res) => {
       product_address: {
         street: street,
         city: city,
-        country: country,
+        state: state,
         zipCode: zipCode,
       },
       quantity,
+      description,
+      shortDesc
     });
     await newProduct.save();
 
@@ -142,9 +146,11 @@ router.put("/edit/:id", upload.single('image123'),async (req, res) => {
     shipping_cost,
     street,
     city,
-    country,
+    state,
     zipCode,
     quantity,
+    description,
+    shortDesc
   } = req.body;
   const result = await Product.findByIdAndUpdate(
     { _id: product_id },
@@ -161,12 +167,12 @@ router.put("/edit/:id", upload.single('image123'),async (req, res) => {
       product_address: {
         street: street,
         city: city,
-        country: country,
+        state: state,
         zipCode: zipCode,
       },
-
-  
       quantity,
+      description,
+      shortDesc
     }
   );
   if (!result) res.status(400).send("Error");
@@ -202,8 +208,10 @@ router.get("/details/:product_id", async (req, res) => {
       product_address: product.product_address,
       registration_date: product.registration_date,
       quantity: product.quantity,
+      description:product.description,
+      shortDesc:product.shortDesc
     };
-
+    console.log(productDetails);
     res.json(productDetails);
   } catch (error) {
     res.status(500).json({ error: error.message });

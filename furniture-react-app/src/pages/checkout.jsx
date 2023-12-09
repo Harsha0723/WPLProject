@@ -43,7 +43,7 @@ const Checkout = () => {
                             </FormGroup>
                             
                             <FormGroup className = "form__group">
-                                <input type = "text"  placeholder="Country" />
+                                <input type = "text"  placeholder="state" />
                             </FormGroup>
                          </Form>
                         </Col>

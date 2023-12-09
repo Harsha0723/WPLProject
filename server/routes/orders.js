@@ -15,7 +15,7 @@ router.post("/payment", async (req, res) => {
     shipping_cost,
     street,
     city,
-    country,
+    state,
     zipCode,
   } = req.body;
 
@@ -28,7 +28,7 @@ router.post("/payment", async (req, res) => {
       shipped_address: {
         street: street,
         city: city,
-        country: country,
+        state: state,
         zipCode: zipCode,
       },
     });

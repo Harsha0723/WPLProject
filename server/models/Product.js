@@ -31,7 +31,7 @@ const ProductSchema = new mongoose.Schema({
     city: {
       type: String,
     },
-    country: {
+    state: {
       type: String,
     },
     zipCode: {
@@ -52,6 +52,12 @@ const ProductSchema = new mongoose.Schema({
   quantity: {
     type: Number,
     default: 1,
+  },
+  shortDesc: {
+    type: String,
+  },
+  description: {
+    type: String,
   },
 });
 
