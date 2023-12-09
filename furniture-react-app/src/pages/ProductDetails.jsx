@@ -64,33 +64,13 @@ const ProductDetails = () => {
             </Col>
             <Col lg-6>
               <div className="product_details mb-3">
-                <h2>{title}</h2>
-                <div className="product_rating d-flex align-items-center gap-5 mb-3">
-                  <div>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarIcon />
-                    </span>
-                    <span>
-                      <StarHalfIcon />
-                    </span>
-                  </div>
-                  <p>
-                    (<span>{avgRating}</span> ratings)
-                  </p>
-                </div>
+                <h1><b>{title}</b></h1>
+               
                 <span className="product_price">${mrp}</span>
                 <p>{description}</p>
 
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button><br/>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={() => window.location.href = '/shop'}>Back</motion.button>
               </div>
             </Col>
           </Row>

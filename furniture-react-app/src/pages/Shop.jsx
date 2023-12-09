@@ -11,6 +11,8 @@ import axios from "axios";
 const Shop = () => {
   const [productsData, setProductsData] = useState([]);
   const [initialProds, setInitialProds] = useState([]);
+  const [filterVal, setFilterVal] = useState("Filter By Category");
+  const [searchVal, setSearchVal] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,30 +34,36 @@ const Shop = () => {
 
   const handleFilter = (e) => {
     console.log('hello filter - ', e.target.value);
-    const filterVal = e.target.value;
-    if (filterVal) {
-      const fileredProd = productsData.filter(
-        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
-      );
-      if (e.target.value == "Filter By Category") {
-        setProductsData(initialProds);
-      } else {
-        setProductsData(fileredProd);
-      }
-    }
+    const filterItem = e.target.value;
+    setFilterVal(filterItem);
+    handleDisplay(filterItem, searchVal);
   };
 
   const handleSearch = (e) => {
     console.log('hello search - ', e.target.value);
     const searchItem = e.target.value;
-    const searchedProd = initialProds.filter(item => item?.title.toLowerCase().includes(searchItem.toLowerCase()));
-    if (e.target.value !== "") {
-      console.log('hello search 1- ', e.target.value, searchedProd);
-      setProductsData(searchedProd);
+    setSearchVal(searchItem);
+    handleDisplay(filterVal, searchItem);
+  };
+
+  const handleDisplay = (filterVal, searchVal) => {
+    console.log('hello search and filter val --', searchVal, filterVal);
+    var prods = initialProds;
+    if (searchVal === "" && filterVal === "Filter By Category") {
+      prods = initialProds;
+    } else if (searchVal && filterVal === "Filter By Category") {
+      prods = productsData.filter(item => item?.title.toLowerCase().includes(searchVal.toLowerCase()));
+    } else if (searchVal === "" && filterVal !== "Filter By Category") {
+      prods = initialProds.filter(
+        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
+      );
     } else {
-      console.log('hello search 2- ', e.target.value, initialProds);
-      setInitialProds(initialProds);
+      prods = initialProds.filter(
+        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
+      );
+      prods = prods.filter(item => item?.title.toLowerCase().includes(searchVal.toLowerCase()));
     }
+    setProductsData(prods);
   };
 
   const handleSort = (e) => {
