@@ -59,9 +59,9 @@ const ProductDetails = () => {
       <section className="pt-0">
         <Container>
           <Row>
-            <Col lg-6>
-              <img src={image_link} alt="" />
-            </Col>
+          <Col lg={6} className="mt-3">
+            <img src={image_link} alt="" />
+          </Col>
             <Col lg-6>
               <div className="product_details mb-3">
                 <h2>{title}</h2>
