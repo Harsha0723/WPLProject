@@ -22,13 +22,7 @@ import productImg16 from "../images/table-01.webp";
 import productImg17 from "../images/table-02.webp";
 import productImg18 from "../images/table-03.webp";
 import productImg19 from "../images/table-04.webp";
-import productImg20 from "../images/watch-02.jpg";
-import productImg21 from "../images/watch-03.jpg";
-import productImg22 from "../images/watch-04.jpg";
-
-import productImg23 from "../images/wireless-01.png";
-
-import productImg25 from "../images/wireless-03.png";
+import productImg21 from "../images/arm-chair-04.jpg";
 
 const products = [
   {
@@ -276,7 +270,28 @@ const products = [
     ],
     avgRating: 4.7,
   },
-
+  {
+    id: "21",
+    title: "Swivel Accent Chair",
+    image_link: productImg21,
+    category: "chair",
+    price: 104,
+    shortDesc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+    reviews: [
+      {
+        rating: 4.6,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+      {
+        rating: 4.9,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.7,
+  },
   {
     id: "10",
     title: "Upholstered Bed Frame",
