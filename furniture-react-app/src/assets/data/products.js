@@ -12,6 +12,8 @@ import productImg007 from "../images/single-sofa-04.png";
 import productImg07 from "../images/arm-chair-01.jpg";
 import productImg08 from "../images/arm-chair-02.jpg";
 import productImg09 from "../images/arm-chair-03.jpg";
+import productImg21 from "../images/arm-chair-04.jpg";
+
 import productImg10 from "../images/bed-01.jpeg";
 import productImg11 from "../images/bed-02.jpeg";
 import productImg12 from "../images/bed-03.webp";
@@ -253,6 +255,29 @@ const products = [
     image_link: productImg09,
     category: "chair",
     price: 112,
+    shortDesc:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+    reviews: [
+      {
+        rating: 4.6,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+      {
+        rating: 4.9,
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      },
+    ],
+    avgRating: 4.7,
+  },
+
+  {
+    id: "21",
+    title: "Swivel Accent Chair",
+    image_link: productImg21,
+    category: "chair",
+    price: 104,
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
