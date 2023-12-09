@@ -53,6 +53,12 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     default: 1,
   },
+  shortDesc: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
 });
 
 module.exports = Product = mongoose.model("Product", ProductSchema);

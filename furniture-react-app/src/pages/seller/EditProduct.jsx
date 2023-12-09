@@ -40,6 +40,8 @@ export default function EditProduct() {
     zipCode: 0,
     quantity: 0,
     seller_id: username,
+    shortDesc:"",
+    description:""
   });
 
   React.useEffect(() => {
@@ -61,6 +63,9 @@ export default function EditProduct() {
           country: response.data.product_address.country,
           zipCode: response.data.product_address.zipCode,
           quantity: response.data.quantity,
+          description:response.data.description,
+          shortDesc:response.data.shortDesc
+
         });
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -93,6 +98,9 @@ export default function EditProduct() {
     productData.append("quantity", parseInt(product.quantity));
     productData.append("username", username);
     productData.append("image_link", product.image_link);
+    productData.append("description", product.description);
+    productData.append("shortDesc", product.shortDesc);
+
     productData.append('image123',file)
 
 
@@ -221,6 +229,32 @@ export default function EditProduct() {
                   value={product.shipping_cost}
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="description"
+                  label="Description"
+                  name="description"
+                  value={product.description}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleInputChange}
+                  required
+                  fullWidth
+                  id="shortDesc"
+                  label="Short Description"
+                  name="shortDesc"
+                  value={product.shortDesc}
+                />
+              </Grid>
+
+
               <Grid item xs={12}>
                 <TextField
                   onChange={handleInputChange}

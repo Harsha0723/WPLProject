@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
@@ -12,19 +12,36 @@ import { cartActions } from "../redux/slices/cartSlice";
 import {toast} from "react-toastify";
 
 import {motion} from "framer-motion"
+import axios from "axios";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = products.find((item) => item.id === id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        // Fetch user info to get the sell_products_id
+        const product_detail = await axios.get(`http://localhost:5001/products/details/${id}`);
+        setProduct(product_detail.data);
+
+      } catch (error) {
+        console.error("Error fetching user products:", error);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
   const {
     image_link,
     title,
-    price,
     avgRating,
     review,
     description,
     shortDesc,
   } = product;
+  const price = product.price;
+  const mrp = price?.mrp
   const dispatch = useDispatch();
   useEffect(() => {
     console.log("hello product", product?.image_link);
@@ -36,7 +53,7 @@ const ProductDetails = () => {
         id,
         title,
         image_link,
-        price
+        price:mrp
       })
     );
 
@@ -75,7 +92,7 @@ const ProductDetails = () => {
                   </div>
                   <p>(<span>{avgRating}</span>  ratings)</p>
                 </div>
-                <span className="product_price">${price}</span>
+                <span className="product_price">${mrp}</span>
                 <p>{description}</p>
 
                 <button className="buy_btn" onClick={addToCart()}>Add to Cart</button></div>

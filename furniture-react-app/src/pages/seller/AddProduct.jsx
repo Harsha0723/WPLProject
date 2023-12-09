@@ -51,6 +51,9 @@ export default function AddProduct() {
       productData.append("zipCode", parseInt(data.get("zipCode")));
       productData.append("quantity", parseInt(data.get("quantity")));
       productData.append("username", username);
+      productData.append("description", data.get("description"));
+      productData.append("shortDesc", data.get("shortDesc"));
+
       productData.append('image123',file)
 
 
@@ -167,6 +170,24 @@ export default function AddProduct() {
                   label="Shipping Cost"
                   name="shipping_cost"
                   type="number"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="shortDesc"
+                  label="Short Description"
+                  name="shortDesc"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="description"
+                  label="Description"
+                  name="description"
                 />
               </Grid>
               <Grid item xs={12}>
