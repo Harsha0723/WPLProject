@@ -133,10 +133,10 @@ export default function AccInfo() {
                       readOnly: true,
                     }}
                     fullWidth
-                    id="country"
-                    label="Country"
-                    name="country"
-                    value={userData.country}
+                    id="state"
+                    label="State"
+                    name="state"
+                    value={userData.state}
                   />
                 </Grid>
                 <Grid item xs={12}>

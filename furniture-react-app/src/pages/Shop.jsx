@@ -35,9 +35,9 @@ const Shop = () => {
     const filterVal = e.target.value;
     if (filterVal) {
       const fileredProd = productsData.filter(
-        (item) => item?.category === filterVal
+        (item) => item?.category?.toLowerCase() === filterVal.toLowerCase()
       );
-      if (e.target.value === "Filter By Category") {
+      if (e.target.value == "Filter By Category") {
         setProductsData(initialProds);
       } else {
         setProductsData(fileredProd);

@@ -36,7 +36,7 @@ export default function EditProduct() {
     shipping_cost: 0,
     street: "",
     city: "",
-    country: "",
+    state: "",
     zipCode: 0,
     quantity: 0,
     seller_id: username,
@@ -60,7 +60,7 @@ export default function EditProduct() {
           shipping_cost: response.data.price.shipping_cost,
           street: response.data.product_address.street,
           city: response.data.product_address.city,
-          country: response.data.product_address.country,
+          state: response.data.product_address.state,
           zipCode: response.data.product_address.zipCode,
           quantity: response.data.quantity,
           description:response.data.description,
@@ -93,7 +93,7 @@ export default function EditProduct() {
 
     productData.append("street", product.street);
     productData.append("city", product.city);
-    productData.append("country", product.country);
+    productData.append("state", product.state);
     productData.append("zipCode", product.zipCode);
     productData.append("quantity", parseInt(product.quantity));
     productData.append("username", username);
@@ -282,10 +282,10 @@ export default function EditProduct() {
                   onChange={handleInputChange}
                   required
                   fullWidth
-                  id="country"
-                  label="Country"
-                  name="country"
-                  value={product.country}
+                  id="state"
+                  label="State"
+                  name="state"
+                  value={product.state}
                 />
               </Grid>
 

@@ -55,7 +55,7 @@ router.post("/signup", async (req, res) => {
   //   password,
   //   street,
   //   city,
-  //   country,
+  //   state,
   //   zipCode,
   //   is_seller,
   // } = req.body;
@@ -120,7 +120,7 @@ router.post("/signup", async (req, res) => {
     //   address: {
     //     street: street,
     //     city: city,
-    //     country: country,
+    //     state: state,
     //     zipCode: zipCode,
     //   },
     // });
@@ -177,7 +177,7 @@ router.get("/userInfo/:username", async (req, res) => {
         phone: currentUser.phone,
         street: currentUser.address.street,
         city: currentUser.address.city,
-        country: currentUser.address.country,
+        state: currentUser.address.state,
         zipCode: currentUser.address.zipCode,
         sell_products_id:currentUser.sell_products_id,
         bought_products_id:currentUser.bought_products_id,
@@ -196,7 +196,7 @@ router.put("/edit/:username", async (req, res) => {
   console.log("IN edit")
   console.log(req)
   const userId = req.params.username;
-  const {username, fname, lname, phone, street, city, country, zipCode } = req.body;
+  const {username, fname, lname, phone, street, city, state, zipCode } = req.body;
   const result = await User.findOneAndUpdate(
     { username:userId },
     {
@@ -207,7 +207,7 @@ router.put("/edit/:username", async (req, res) => {
       address: {
         street: street,
         city: city,
-        country: country,
+        state: state,
         zipCode: zipCode,
       },
     }

@@ -47,7 +47,7 @@ export default function AddProduct() {
 
       productData.append("street", data.get("street"));
       productData.append("city", data.get("city"));
-      productData.append("country", data.get("country"));
+      productData.append("state", data.get("state"));
       productData.append("zipCode", parseInt(data.get("zipCode")));
       productData.append("quantity", parseInt(data.get("quantity")));
       productData.append("username", username);
@@ -212,9 +212,9 @@ export default function AddProduct() {
                 <TextField
                   required
                   fullWidth
-                  id="country"
-                  label="Country"
-                  name="country"
+                  id="state"
+                  label="State"
+                  name="state"
                 />
               </Grid>
               <Grid item xs={12}>

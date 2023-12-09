@@ -7,11 +7,12 @@ import "../styles/productDetails.css";
 import products from "../assets/data/products";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import StarIcon from "@mui/icons-material/Star";
-import {useDispatch} from "react-redux";
+import Button from "@mui/material/Button"
+import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import axios from "axios";
 
 const ProductDetails = () => {
@@ -21,9 +22,10 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         // Fetch user info to get the sell_products_id
-        const product_detail = await axios.get(`http://localhost:5001/products/details/${id}`);
+        const product_detail = await axios.get(
+          `http://localhost:5001/products/details/${id}`
+        );
         setProduct(product_detail.data);
-
       } catch (error) {
         console.error("Error fetching user products:", error);
       }
@@ -32,20 +34,11 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  const {
-    image_link,
-    title,
-    avgRating,
-    review,
-    description,
-    shortDesc,
-  } = product;
+  const { image_link, title, avgRating, review, description, shortDesc } =
+    product;
   const price = product.price;
-  const mrp = price?.mrp
+  const mrp = price?.mrp;
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log("hello product", product?.image_link);
-  });
 
   const addToCart = () => {
     dispatch(
@@ -88,14 +81,17 @@ const ProductDetails = () => {
                     </span>
                     <span>
                       <StarHalfIcon />
-                      </span>    
+                    </span>
                   </div>
-                  <p>(<span>{avgRating}</span>  ratings)</p>
+                  <p>
+                    (<span>{avgRating}</span> ratings)
+                  </p>
                 </div>
                 <span className="product_price">${mrp}</span>
                 <p>{description}</p>
 
-                <button className="buy_btn" onClick={addToCart()}>Add to Cart</button></div>
+                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button>
+              </div>
             </Col>
           </Row>
         </Container>

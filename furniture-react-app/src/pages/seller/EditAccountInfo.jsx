@@ -34,7 +34,7 @@ const EditUserInfo = () => {
     phone: "",
     street: "",
     city: "",
-    country: "",
+    state: "",
     zipCode: "",
   });
 
@@ -54,7 +54,7 @@ const EditUserInfo = () => {
           phone: response.data.phone,
           street: response.data.street,
           city: response.data.city,
-          country: response.data.country,
+          state: response.data.state,
           zipCode: response.data.zipCode,
         });
       } catch (error) {
@@ -199,10 +199,10 @@ const EditUserInfo = () => {
                     onChange={handleChange}
                     required
                     fullWidth
-                    id="country"
-                    label="Country"
-                    name="country"
-                    value={formData.country}
+                    id="state"
+                    label="State"
+                    name="state"
+                    value={formData.state}
                   />
                 </Grid>
                 <Grid item xs={12}>

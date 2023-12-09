@@ -21,7 +21,7 @@ const OrderSchema = new mongoose.Schema({
   shipped_address: {
     street: String,
     city: String,
-    country: String,
+    state: String,
     zipCode: Number,
   },
 });
