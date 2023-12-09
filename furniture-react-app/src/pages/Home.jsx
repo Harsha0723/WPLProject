@@ -39,8 +39,10 @@ const Home = () => {
                     <div className="hero__content">
                         <p className="hero__subtitle">Trending products in {year}</p>
                         <h2>Make Your Interior More Minimalistic & Modern</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nobis animi magnam
-                             voluptates est totam, quisquam explicabo fugit quo impedit!</p>
+                        <p>Discover Your Home's Signature Style! Our Furniture Marketplace brings together a 
+                            fusion of timeless classics and contemporary designs. Elevate your living space 
+                            effortlessly with our curated collection, blending vintage charm and modern 
+                            sophistication.</p>
                         <motion.button  whileTap={{ scale: 1.2 }}
                          className="buy__btn mt-3">
                             <Link to='/shop'>SHOP NOW</Link> 
@@ -87,7 +89,7 @@ const Home = () => {
                         <h3 className="text-white fs-5 mb-3">Quality Armchair</h3>
                     </div>
                     <Clock />
-
+                    <br></br>
                     <motion.button whileTap={{scale: 1.2 }}
                     className="buy__btn store__btn">
                         <Link to='/shop'>Visit Store</Link>

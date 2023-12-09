@@ -15,12 +15,13 @@
     align-items: center;
     column-gap: 8px;
     flex-shrink: 0;
+    line-height: 1;
 }
 
 .logo img {
-    width: 50%; /* Adjust the percentage as needed */
-    max-width: 4rem; /* Set a maximum width to avoid stretching on larger screens */
-    height: auto; /* Maintain aspect ratio */
+    width: 50%; 
+    max-width: 4rem; 
+    height: auto; 
 }
 
 

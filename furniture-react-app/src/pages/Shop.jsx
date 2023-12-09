@@ -10,6 +10,7 @@ import axios from "axios";
 
 const Shop = () => {
   const [productsData, setProductsData] = useState([]);
+  const [initialProds, setInitialProds] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,6 +20,7 @@ const Shop = () => {
         );
           console.log(productsData.data);
         setProductsData(productsData.data);
+        setInitialProds(productsData.data);
       } catch (error) {
         console.error("Error fetching user products:", error);
       }
@@ -29,19 +31,36 @@ const Shop = () => {
 
 
   const handleFilter = (e) => {
+    console.log('hello filter - ', e.target.value);
     const filterVal = e.target.value;
     if (filterVal) {
       const fileredProd = productsData.filter(
         (item) => item?.category === filterVal
       );
-      setProductsData(fileredProd);
+      if (e.target.value == "Filter By Category") {
+        setProductsData(initialProds);
+      } else {
+        setProductsData(fileredProd);
+      }
     }
   };
 
   const handleSearch = (e) => {
+    console.log('hello search - ', e.target.value);
     const searchItem = e.target.value;
-    const searchedProd = products.filter(item => item?.title.toLowerCase().includes(searchItem.toLowerCase()));
-    setProductsData(searchedProd);
+    const searchedProd = initialProds.filter(item => item?.title.toLowerCase().includes(searchItem.toLowerCase()));
+    if (e.target.value !== "") {
+      console.log('hello search 1- ', e.target.value, searchedProd);
+      setProductsData(searchedProd);
+    } else {
+      console.log('hello search 2- ', e.target.value, initialProds);
+      setInitialProds(initialProds);
+    }
+  };
+
+  const handleSort = (e) => {
+    console.log('hello sort val - ', e.target.value);
+    
   };
 
   return (
@@ -50,20 +69,20 @@ const Shop = () => {
       <section>
         <Container>
           <Row class="Shop">
-            <Col lg="3" md="3">
+            <Col lg="3" md="3" sm="6">
               <div className="filter__widget">
                 <select onChange={handleFilter}>
                   <option>Filter By Category</option>
-                  <option value="sofa">Sofa</option>
+                  <option value="Sofa">Sofa</option>
                   <option value="chair">Chair</option>
                   <option value="table">Table</option>
                   <option value="bed">Bed</option>
                 </select>
               </div>
             </Col>
-            <Col lg="3" md="3">
+            <Col lg="3" md="3" sm="6">
               <div className="filter__widget">
-                <select>
+                <select onChange={handleSort}>
                   <option>Sort By</option>
                   <option value="asc">Ascending</option>
                   <option value="desc">Descending</option>
