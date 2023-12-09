@@ -33,7 +33,7 @@ const navigate = useNavigate();
         setUserData(response.data);
     }
     else {
-        toast.error("Unable to retrieve user data", { autoClose: 5 })
+        toast.error("Unable to retrieve user data", { autoClose: 15 })
     }
         
     };

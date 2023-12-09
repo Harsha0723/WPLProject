@@ -4,9 +4,6 @@ import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import "../styles/productDetails.css";
-import products from "../assets/data/products";
-import StarHalfIcon from "@mui/icons-material/StarHalf";
-import StarIcon from "@mui/icons-material/Star";
 import Button from "@mui/material/Button"
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
@@ -59,9 +56,9 @@ const ProductDetails = () => {
       <section className="pt-0">
         <Container>
           <Row>
-            <Col lg-6>
-              <img src={image_link} alt="" />
-            </Col>
+          <Col lg={6} className="mt-3">
+            <img src={image_link} alt="" />
+          </Col>
             <Col lg-6>
               <div className="product_details mb-3">
                 <h1><b>{title}</b></h1>
