@@ -53,6 +53,7 @@
     align-items: center;
     column-gap: 1.2rem;
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 .nav__icons span i {

@@ -81,7 +81,7 @@ const EditUserInfo = () => {
 
       toast.success("Account info updated successfully", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 100,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -91,7 +91,7 @@ const EditUserInfo = () => {
       console.error("Error updating account info:", error);
       toast.error("Failed to update account info", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

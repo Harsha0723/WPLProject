@@ -7,6 +7,11 @@ const useAuth = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   const loginCallback = (username) => {
+    if(username === 'admin')
+      sessionStorage.setItem("isSeller", "true");
+    else
+      sessionStorage.setItem("isSeller", "false");
+
     console.log("In loginCallback");
     setLoggedIn(true);
     sessionStorage.setItem("isLoggedIn", "true");
@@ -24,6 +29,7 @@ const useAuth = () => {
     console.log("Cart Items After:",localStorage.getItem("cartItems"))
     console.log("Clear cart")
     dispatch(cartActions.clearCart());
+    sessionStorage.setItem("isSeller", "false");
   };
 
   return { isLoggedIn, loginCallback, logoutCallback };

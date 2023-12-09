@@ -36,19 +36,19 @@ export default function SignInSide() {
       const response = await axios.post("http://localhost:5001/users/signin", 
                         loginData);
       if (response.status === 200) {
-        toast.success('User logged in.');
+        toast.success('User logged in.', { autoClose: 5 });
         loginCallback(loginData.username);
         console.log(isLoggedIn)
         setTimeout(() => {
           navigate('/home');
-        }, 1000);
+        }, 500);
       } else {
         // Signup failed
-        toast.error('Login Failed.');
+        toast.error('Login Failed.', { autoClose: 5 });
       }
     } catch (error) {
       console.log(error)
-      toast.error(`${error.response.data.message}`);
+      toast.error(`${error.response.data.message}`, { autoClose: 5 });
     }
   };
   

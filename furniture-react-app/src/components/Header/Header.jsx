@@ -43,7 +43,9 @@ const Header = () => {
     const navigate = useNavigate();
     const { logoutCallback } = useAuth();
     const isLoggedIn = sessionStorage.getItem("isLoggedIn")
+    const isSeller = sessionStorage.getItem("isSeller")
     console.log(isLoggedIn)
+    console.log(isSeller)
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
@@ -63,17 +65,17 @@ const Header = () => {
       
           if (response.status === 200) {
             // Handle successful logout
-            toast.success('Logout successful');
+            toast.success('Logout successful', { autoClose: 5 });
             logoutCallback();
             setTimeout(() => {
                 navigate('/home');
               }, 500);
           } else {
             // Handle logout failure
-            toast.error('Logout failed');
+            toast.error('Logout failed', { autoClose: 100 });
           }
         } catch (error) {
-          toast.error('Logout failed:', error.message);
+          toast.error('Logout failed:', error.message, { autoClose: 5 });
         }
       };
 
@@ -107,23 +109,22 @@ const Header = () => {
                         </div>
                     </div>
                     
-                    <div className="navigation" ref={menuRef} onClick={menuToggle}> 
-                        <motion.ul className="menu">
-                            {
-                                nav__link.map((item, index) => (
-                                    <li className='nav__item' key={index}>
-                                        <NavLink 
-                                            to={item.path} className={(navClass)=>
-                                            navClass.isActive? 'nav__active' : ''
-                                            } >
-                                            {item.display}
-                                        </NavLink>
-                                    </li>
-                                ))
-                            }
-                        </motion.ul>
-                    </div>
-
+                    {isSeller === 'false' && (
+                        <div className="navigation" ref={menuRef} onClick={menuToggle}>
+                            <motion.ul className="menu">
+                            {nav__link.map((item, index) => (
+                                <li className='nav__item' key={index}>
+                                <NavLink 
+                                    to={item.path} 
+                                    className={(navClass) => navClass.isActive ? 'nav__active' : ''}
+                                >
+                                    {item.display}
+                                </NavLink>
+                                </li>
+                            ))}
+                            </motion.ul>
+                        </div>
+                    )}
                     <div className="nav__icons">
                         <span className="fav__icon">
                             <Badge badgeContent={1} color="error">
@@ -141,18 +142,19 @@ const Header = () => {
                             </motion.div>
 
                             <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
-                                {isLoggedIn === "true" ? (
+                                {isLoggedIn === 'true' ? (
                                     <div className='d-flex align-items-center justify-content-center flex-column'>
-                                        <Link to='/profile'>Profile</Link>
+                                        {isSeller === 'true' ? <Link to='/seller/acc_info/admin'>Dashboard</Link> : <Link to='/profile'>Profile</Link>}
                                         <span onClick={logout}>Logout</span>
                                     </div>
-                                ): (
+                                ) : (
                                     <div className='d-flex align-items-center justify-content-center flex-column'>
-                                         <Link to='/signup'>SignUp</Link>
+                                        <Link to='/signup'>SignUp</Link>
                                         <Link to='/signin'>SignIn</Link>
                                     </div>
-                                )}    
+                                )}
                             </div>
+
                         </div>
                         <div className="mobile__menu">
                             <span onClick={menuToggle}>

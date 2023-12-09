@@ -25,7 +25,7 @@ const handleDelete = async (id, username) => {
     // Show success toast
     toast.success("Product deleted successfully", {
       position: "top-right",
-      autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
+      autoClose: 100, // Close the toast after 3000 milliseconds (3 seconds)
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -37,7 +37,7 @@ const handleDelete = async (id, username) => {
     // Optionally, you can update the UI by removing the deleted product from the state
     // or triggering a re-fetch of the product list.
   } catch (error) {
-    console.error("Error deleting product:", error);
+    console.error("Error deleting product:", error, { autoClose: 10 });
 
     // Show error toast
     toast.error("Error deleting product", {
