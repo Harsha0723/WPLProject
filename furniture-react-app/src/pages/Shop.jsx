@@ -69,9 +69,6 @@ const Shop = () => {
     setProductsData(prods);
   };
 
-  const handleSort = (e) => {
-    console.log("hello sort val - ", e.target.value);
-  };
 
   return (
     <Helmet title="Shop">
@@ -79,7 +76,7 @@ const Shop = () => {
       <section>
         <Container>
           <Row class="Shop">
-            <Col lg="3" md="3" sm="6">
+            <Col lg={5} md="6" sm={6}>
               <div className="filter__widget">
                 <select onChange={handleFilter}>
                   <option>Filter By Category</option>
@@ -90,16 +87,7 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg="3" md="3" sm="6">
-              <div className="filter__widget">
-                <select onChange={handleSort}>
-                  <option>Sort By</option>
-                  <option value="asc">Ascending</option>
-                  <option value="desc">Descending</option>
-                </select>
-              </div>
-            </Col>
-            <Col lg="6" md="6">
+            <Col lg={6} md={6}>
               <div className="search_box">
                 <input
                   type="text"
