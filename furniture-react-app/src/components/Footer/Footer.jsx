@@ -18,10 +18,9 @@ const Footer = () => {
                         </div>
                     </div>
                         <p className="footer__text mt-4">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi iusto nisi 
-                            nostrum sapiente repellat et id, distinctio libero assumenda aspernatur?
-                        </p>
-                    
+                        Elevate your living spaces with FurniMart, your go-to destination
+                         for premium furniture. Discover a curated selection of modern and vintage 
+                         designs that redefine comfort and style.</p> 
                     </Col>
 
                     <Col lg="3" className="mb-4" md='6'>
