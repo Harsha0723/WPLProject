@@ -7,13 +7,21 @@
     margin-bottom: 10px;
 }
 
-.product_rating span {
-    color: coral;
-    font-weight: 500;
+.product_details p {
+    margin: 20px;
 }
-
 
 .product_price {
     font-size: 1.3rem;
     font-weight: 500;
+    margin-left: 20px;
+}
+
+h1 {
+    display: flex;
+    margin-left: 20px;
+}
+
+.buy__btn {
+    margin-left: 20px;
 }

@@ -16,6 +16,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   useEffect(() => {
     const fetchProduct = async () => {
+      console.log("hello fetched product --", product);
       try {
         // Fetch user info to get the sell_products_id
         const product_detail = await axios.get(
@@ -30,8 +31,7 @@ const ProductDetails = () => {
     fetchProduct();
   }, []);
 
-  const { image_link, title, description } =
-    product;
+  const { image_link, title, description } = product;
   const price = product.price;
   const mrp = price?.mrp;
   const dispatch = useDispatch();
@@ -42,36 +42,55 @@ const ProductDetails = () => {
         id,
         title,
         image_link,
-        price:mrp
+        price: mrp,
       })
     );
 
-    toast.success('Product added to cart successfully!', { autoClose: 5 })
+    toast.success("Product added to cart successfully!", { autoClose: 5 });
   };
 
   return (
     <Helmet title={title}>
       <CommonSection title={title} />
-      {product ? <section className="pt-0">
-        <Container>
-          <Row>
-          <Col lg={6} className="mt-3">
-            <img src={image_link} alt="" />
-          </Col>
-            <Col lg-6>
-              <div className="product_details mb-3">
-                <h1><b>{title}</b></h1>
-               
-                <span className="product_price">${mrp}</span>
-                <p>{description}</p>
+      {JSON.stringify(product) === "{}" ? (
+        <h1>Loading...</h1>
+      ) : (
+        <section className="pt-0">
+          <Container>
+            <Row>
+              <Col lg={6} className="mt-3">
+                <img src={image_link} alt="" />
+              </Col>
+              <Col lg-6>
+                <div className="product_details mb-3">
+                  <h1>
+                    <b>{title}</b>
+                  </h1>
 
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button><br/>
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={() => window.location.href = '/shop'}>Back</motion.button>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section> : ""}
+                  <span className="product_price">${mrp}</span>
+                  <p>{description}</p>
+
+                  <motion.button
+                    whileTap={{ scale: 1.5 }}
+                    className="buy__btn mt-3"
+                    onClick={addToCart}
+                  >
+                    Add to Cart
+                  </motion.button>
+                  <br />
+                  <motion.button
+                    whileTap={{ scale: 1.5 }}
+                    className="buy__btn mt-3"
+                    onClick={() => (window.location.href = "/shop")}
+                  >
+                    Back
+                  </motion.button>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      )}
     </Helmet>
   );
 };
