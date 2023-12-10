@@ -318,7 +318,7 @@ export default function EditProduct() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, bgcolor: "#0a1d37" }}
             >
               Save Changes
             </Button>
