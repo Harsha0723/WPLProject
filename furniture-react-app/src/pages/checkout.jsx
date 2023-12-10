@@ -7,8 +7,11 @@ import axios from "axios";
 import "../styles/checkout.css";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
+import { toast } from "react-toastify";
+import { Link, useNavigate  } from "react-router-dom";
 const Checkout = () => {
   const dispatch = useDispatch();
+  const navigate  = useNavigate();
   const totalQty = useSelector((state) => state.cart.totalQuantity);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalShippingCost = useSelector(
@@ -56,6 +59,8 @@ const Checkout = () => {
         localStorage.setItem("totalShippingCost", 0);
         localStorage.setItem("totalTax", 0);
         localStorage.setItem("totalQuantity", 0);
+        toast.success('Order Placed Successfully', { autoClose: 10 });
+        navigate("/shop");
       })
       .catch((err) => console.log(err));
   };
