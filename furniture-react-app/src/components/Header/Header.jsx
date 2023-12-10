@@ -126,7 +126,7 @@ const Header = () => {
                         </div>
                     )}
                     <div className="nav__icons">                        
-                        {
+                        {/* {
                             isSeller === 'false' && (
                                 <span className="fav__icon">
                                     <Badge badgeContent={1} color="error">
@@ -134,7 +134,7 @@ const Header = () => {
                                     </Badge>
                                 </span>
                             )
-                        }
+                        } */}
 
                         {
                             isSeller === 'false' && (
