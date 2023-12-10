@@ -79,7 +79,7 @@ const ProductDetails = () => {
             </Col>
           </Row>
         </Container>
-      </section> : ""}
+      </section> )}
     </Helmet>
   );
 };
