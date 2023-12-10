@@ -44,13 +44,15 @@ const Header = () => {
     const { logoutCallback } = useAuth();
     const isLoggedIn = sessionStorage.getItem("isLoggedIn")
     const isSeller = sessionStorage.getItem("isSeller")
+    console.log(isLoggedIn)
+    console.log(isSeller)
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
             if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                headerRef?.current?.classList.add('sticky__header')
+                headerRef.current.classList.add('sticky__header')
             } else {
-                headerRef?.current?.classList.remove('sticky__header')
+                headerRef.current.classList.remove('sticky__header')
             }
         })
     }
@@ -73,7 +75,7 @@ const Header = () => {
             toast.error('Logout failed', { autoClose: 100 });
           }
         } catch (error) {
-          toast.error('Logout failed:', error.message, { autoClose: 5 });
+          toast.error('Logout failed:', error.message, { autoClose: 15 });
         }
       };
 
@@ -123,17 +125,27 @@ const Header = () => {
                             </motion.ul>
                         </div>
                     )}
-                    <div className="nav__icons">
-                        <span className="fav__icon">
-                            <Badge badgeContent={1} color="error">
-                                <FavoriteIcon />
-                            </Badge>
-                        </span>
-                        <span className="cart__icon" onClick={navigateToCart}>
-                            <Badge badgeContent={totalQuantity} color="error">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </span>
+                    <div className="nav__icons">                        
+                        {
+                            isSeller === 'false' && (
+                                <span className="fav__icon">
+                                    <Badge badgeContent={1} color="error">
+                                        <FavoriteIcon />
+                                    </Badge>
+                                </span>
+                            )
+                        }
+
+                        {
+                            isSeller === 'false' && (
+                                <span className="cart__icon" onClick={navigateToCart}>
+                                    <Badge badgeContent={totalQuantity} color="error">
+                                        <ShoppingCartIcon />
+                                    </Badge>
+                                </span>
+                            )
+                        }
+                        
                         <div className="profile">
                             <motion.div whileTap={{ scale: 1.5 }}>
                                 <AccountCircleIcon onClick={toggleProfileActions} />
