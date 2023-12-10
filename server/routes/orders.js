@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 router.post("/payment", async (req, res) => {
   const {
-    product_id,
+    product_ids,
     seller_id,
     buyer_id,
     mrp,
@@ -20,11 +20,11 @@ router.post("/payment", async (req, res) => {
   } = req.body;
 
   try {
-    const newOrder= new Order({
-      product_id,
+    const newOrder = new Order({
+      product_ids,
       buyer_id,
       seller_id,
-      cost : parseFloat(mrp) + parseFloat(tax) + parseFloat(shipping_cost),
+      cost: parseFloat(mrp) + parseFloat(tax) + parseFloat(shipping_cost),
       shipped_address: {
         street: street,
         city: city,
@@ -34,9 +34,16 @@ router.post("/payment", async (req, res) => {
     });
     await newOrder.save();
 
-    await Product.findByIdAndUpdate(product_id,{$set : {is_sold:true,purchase_date:Date.now()}});
-    await User.findOneAndUpdate({username:buyer_id},{$push : {bought_products_id:new mongoose.Types.ObjectId(product_id)}})
-
+    // await Product.findByIdAndUpdate(product_id,{$set : {is_sold:true,purchase_date:Date.now()}});
+    await Product.updateMany(
+      { _id: { $in: product_ids } },
+      { $set: { is_sold: true } },
+      { multi: true }
+    );
+    await User.findOneAndUpdate(
+      { username: buyer_id },
+      { $push: { bought_products_id: product_ids } }
+    );
 
     res.json({ message: "Order registered successfully." });
   } catch (error) {
@@ -44,9 +51,5 @@ router.post("/payment", async (req, res) => {
     res.status(500).json({ message: "Internal server error." });
   }
 });
-
-
-
-
 
 module.exports = router;

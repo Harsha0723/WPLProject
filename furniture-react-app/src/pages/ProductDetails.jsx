@@ -42,7 +42,10 @@ const ProductDetails = () => {
         id,
         title,
         image_link,
-        price:mrp
+        price:mrp,
+        shipping_cost:price?.shipping_cost,
+        tax:price?.tax,
+        seller_id: product?.seller_id
       })
     );
 
@@ -65,7 +68,7 @@ const ProductDetails = () => {
                 <span className="product_price">${mrp}</span>
                 <p>{description}</p>
 
-                <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button><br/>
+                {product.is_sold ? <p style={{color: "red", paddingTop: "3%"}}>Item already sold!</p> : <><motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={addToCart}>Add to Cart</motion.button><br/></>}
                 <motion.button whileTap={{scale: 1.5}} className="buy__btn mt-3" onClick={() => window.location.href = '/shop'}>Back</motion.button>
               </div>
             </Col>

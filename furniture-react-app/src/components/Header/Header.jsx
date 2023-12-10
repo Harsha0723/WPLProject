@@ -44,8 +44,6 @@ const Header = () => {
     const { logoutCallback } = useAuth();
     const isLoggedIn = sessionStorage.getItem("isLoggedIn")
     const isSeller = sessionStorage.getItem("isSeller")
-    console.log(isLoggedIn)
-    console.log(isSeller)
 
     const stickyHeaderFunc = () => {
         window.addEventListener('scroll', () => {
