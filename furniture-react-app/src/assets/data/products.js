@@ -31,7 +31,10 @@ const products = [
     title: "Stone and Beam Westview ",
     image_link: productImg01,
     category: "sofa",
-    price: 193,
+    price:
+    {
+      mrp:193,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -50,7 +53,9 @@ const products = [
     title: "Rivet Bigelow Modern ",
     image_link: productImg02,
     category: "sofa",
-    price: 253,
+    price:{
+      mrp:253,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -73,7 +78,9 @@ const products = [
     title: "Amazon Brand Modern Sofa",
     image_link: productImg03,
     category: "sofa",
-    price: 173,
+    price:{
+      mrp:173,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -95,7 +102,9 @@ const products = [
     title: "Rivet Bigelow Modern ",
     image_link: productImg02,
     category: "sofa",
-    price: 253,
+    price:{
+      mrp:253,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -117,7 +126,9 @@ const products = [
     title: "Fllufy Sheep Sofa",
     image_link: productImg04,
     category: "sofa",
-    price: 163,
+    price:{
+      mrp:163,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -140,7 +151,9 @@ const products = [
     title: "Faux Velvet Sofa",
     image_link: productImg05,
     category: "sofa",
-    price: 163,
+    price:{
+      mrp:163,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -163,7 +176,9 @@ const products = [
     title: "Fllufy Sheep Sofa",
     image_link: productImg06,
     category: "sofa",
-    price: 163,
+    price:{
+      mrp:163,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -185,7 +200,9 @@ const products = [
     title: "Sakarias Armchair",
     image_link: productImg07,
     category: "chair",
-    price: 99,
+    price:{
+      mrp:99,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -208,7 +225,9 @@ const products = [
     title: "Modern Arm Sofa",
     image_link: productImg007,
     category: "sofa",
-    price: 173,
+    price:{
+      mrp:173,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -231,7 +250,9 @@ const products = [
     title: "Baltsar Chair",
     image_link: productImg08,
     category: "chair",
-    price: 89,
+    price:{
+      mrp:89,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -254,7 +275,9 @@ const products = [
     title: "Helmar Chair",
     image_link: productImg09,
     category: "chair",
-    price: 112,
+    price:{
+      mrp:112,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -276,7 +299,9 @@ const products = [
     title: "Swivel Accent Chair",
     image_link: productImg21,
     category: "chair",
-    price: 104,
+    price:{
+      mrp:104,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -299,7 +324,9 @@ const products = [
     title: "Upholstered Bed Frame",
     image_link: productImg10,
     category: "bed",
-    price: 585,
+    price:{
+      mrp:585,
+    },
     shortDesc:
       "Plush channels of upholstery bring a dramatic yet soft aesthetic to any bedroom.",
     description:
@@ -321,7 +348,9 @@ const products = [
     title: "Storage Bed",
     image_link: productImg12,
     category: "bed",
-    price: 630,
+    price:{
+      mrp:630,
+    },
     shortDesc:
       "Our storage bed allows you to maximize your spaces without skimping on aesthetics",
     description:
@@ -343,7 +372,9 @@ const products = [
     title: "Wooden Bed Frame",
     image_link: productImg13,
     category: "bed",
-    price: 675,
+    price:{
+      mrp:675,
+    },
     shortDesc:
       "Our wooden bed frame is designed to be both convenient to build, and stunning to look at.",
     description:
@@ -365,7 +396,9 @@ const products = [
     title: "Wooden Platform Bed",
     image_link: productImg14,
     category: "bed",
-    price: 495,
+    price:{
+      mrp:495,
+    },
     shortDesc:
       "Our beautiful wooden platform bed, constructed from solid acacia wood.",
     description:
@@ -387,7 +420,9 @@ const products = [
     title: "The Platform Bed",
     image_link: productImg15,
     category: "bed",
-    price: 150,
+    price:{
+      mrp:150,
+    },
     shortDesc:
       "Our no-nonsense platform bed can also function as a box spring. providing support with a simple design.",
     description:
@@ -409,7 +444,9 @@ const products = [
     title: "Table de chevet en rotin - 1 tiroir",
     image_link: productImg16,
     category: "table",
-    price: 375,
+    price:{
+      mrp:375,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -431,7 +468,9 @@ const products = [
     title: "Table de chevet en rotin - 1 tiroir",
     image_link: productImg17,
     category: "table",
-    price: 403,
+    price:{
+      mrp:403,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -453,7 +492,9 @@ const products = [
     title: "Table de chevet en bois",
     image_link: productImg18,
     category: "table",
-    price: 215,
+    price:{
+      mrp:215,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
@@ -475,7 +516,9 @@ const products = [
     title: "t",
     image_link: productImg19,
     category: "table",
-    price: 225,
+    price:{
+      mrp:225,
+    },
     shortDesc:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
     description:
