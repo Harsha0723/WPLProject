@@ -1,31 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import "remixicon/fonts/remixicon.css";
 import "bootstrap/dist/css/bootstrap.css";
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
-import {Provider} from "react-redux";
-import {ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <BrowserRouter>
-    <Provider store = {store}>
+  <BrowserRouter>
+    <Provider store={store}>
       <ToastContainer
-          theme="dark"
-          position="top-right"
-          autoClose={3000}
-          closeOnClick
-          pauseOnHover={false}
-          />
-        <App />
+        theme="dark"
+        position="top-right"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover={false}
+      />
+      <App />
     </Provider>
-    </BrowserRouter>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
