@@ -38,7 +38,6 @@ export default function SignInSide() {
       if (response.status === 200) {
         toast.success('User logged in.', { autoClose: 5 });
         loginCallback(loginData.username);
-        console.log(isLoggedIn)
         setTimeout(() => {
           navigate('/home');
         }, 500);

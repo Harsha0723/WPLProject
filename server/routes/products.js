@@ -110,6 +110,7 @@ router.get("/list", async (req, res) => {
       image_link: 1,
       category: 1,
       title: 1,
+      is_sold:1
     });
 
     res.json(products);
@@ -209,9 +210,9 @@ router.get("/details/:product_id", async (req, res) => {
       registration_date: product.registration_date,
       quantity: product.quantity,
       description:product.description,
-      shortDesc:product.shortDesc
+      shortDesc:product.shortDesc,
+      is_sold: product.is_sold
     };
-    console.log(productDetails);
     res.json(productDetails);
   } catch (error) {
     res.status(500).json({ error: error.message });

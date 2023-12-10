@@ -5,7 +5,9 @@ const persistedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 const initialState = {
     cartItems: persistedCartItems,
     totalAmount:0,
-    totalQuantity:0
+    totalQuantity:0,
+    totalShippingCost:0,
+    totalTax:0
 }
 
 const cartSlice = createSlice({
@@ -27,7 +29,10 @@ const cartSlice = createSlice({
                     image_link: newItem.image_link,
                     price: newItem.price,
                     quantity: 1,
-                    totalPrice: newItem.price
+                    totalPrice: newItem.price,
+                    shipping_cost:newItem?.shipping_cost,
+                    tax:newItem?.tax,
+                    seller_id: newItem.seller_id,
                 })
             }
             else {
@@ -37,6 +42,14 @@ const cartSlice = createSlice({
             state.totalAmount = state.cartItems.reduce(
                 (total, item) => total + 
             Number(item.price) * Number(item.quantity), 0);
+
+            state.totalShippingCost = state.cartItems.reduce(
+                (total, item) => total + 
+            Number(item.shipping_cost) * Number(item.quantity), 0);
+
+            state.totalTax = state.cartItems.reduce(
+                (total, item) => total + 
+            Number(item.tax) * Number(item.quantity), 0);
 
             console.log(state.totalQuantity);
             console.log(state.cartItems);
@@ -54,6 +67,12 @@ const cartSlice = createSlice({
 
             state.totalAmount = state.cartItems.reduce((total, item) => total + 
                 Number(item.price) * Number(item.quantity), 0);
+
+            state.totalShippingCost = state.cartItems.reduce((total, item) => total + 
+                Number(item.shipping_cost) * Number(item.quantity), 0);
+
+            state.totalTax = state.cartItems.reduce((total, item) => total + 
+                Number(item.tax) * Number(item.quantity), 0);
         },
 
         setCartItems: (state, action) => {
@@ -73,6 +92,16 @@ const cartSlice = createSlice({
               (total, item) => total + item.totalPrice,
               0
             );
+
+            state.totalShippingCost = state.cartItems.reduce(
+                (total, item) => total + item.shipping_cost,
+                0
+            );
+
+            state.totalTax = state.cartItems.reduce(
+            (total, item) => total + item.tax,
+            0
+            );
           },
 
           clearCart: (state) => {
@@ -80,6 +109,8 @@ const cartSlice = createSlice({
             state.cartItems = [];
             state.totalAmount = 0;
             state.totalQuantity = 0;
+            state.totalShippingCost = 0;
+            state.totalTax = 0;
             localStorage.removeItem("cartItems")
           },
     },

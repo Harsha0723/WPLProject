@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
 
-  product_id: {
-    type: mongoose.Schema.Types.ObjectId,
+  product_ids: {
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
   },
   seller_id: {

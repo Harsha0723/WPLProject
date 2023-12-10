@@ -20,7 +20,6 @@ const Shop = () => {
         const productsData = await axios.get(
           `http://localhost:5001/products/list`
         );
-        console.log(productsData.data);
         setProductsData(productsData.data);
         setInitialProds(productsData.data);
       } catch (error) {
@@ -32,21 +31,18 @@ const Shop = () => {
   }, []);
 
   const handleFilter = (e) => {
-    console.log("hello filter - ", e.target.value);
     const filterItem = e.target.value;
     setFilterVal(filterItem);
     handleDisplay(filterItem, searchVal);
   };
 
   const handleSearch = (e) => {
-    console.log("hello search - ", e.target.value);
     const searchItem = e.target.value;
     setSearchVal(searchItem);
     handleDisplay(filterVal, searchItem);
   };
 
   const handleDisplay = (filterVal, searchVal) => {
-    console.log("hello search and filter val --", searchVal, filterVal);
     var prods = initialProds;
     if (searchVal === "" && filterVal === "Filter By Category") {
       prods = initialProds;

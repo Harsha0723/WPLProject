@@ -25,10 +25,8 @@ const navigate = useNavigate();
     // Fetch user information when the component mounts
     const fetchUserData = async () => {
       const username = sessionStorage.getItem("username")
-      console.log(username)
       const response = await axios.get(`http://localhost:5001/users/userInfo/${username}`);
       if (response.status === 200)  {
-        console.log(response)
         // const userData = await response.json();
         setUserData(response.data);
     }
@@ -56,15 +54,12 @@ const navigate = useNavigate();
 
   const handleSaveChanges = async () => {
     try {
-        console.log(userData)
         const response = await axios.put(`http://localhost:5001/users/edit/${userData.username}`, userData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
-        console.log(response)
         if (response.status === 200) {
-          console.log('User info updated successfully');
           // Optionally, you can provide user feedback here
         } else {
           console.error('Error while updating user info');
